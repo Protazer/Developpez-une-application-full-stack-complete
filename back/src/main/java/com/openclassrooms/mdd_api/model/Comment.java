@@ -22,9 +22,15 @@ public class Comment {
 	@Size(max = 255)
 	private String content;
 
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
+	private User user;
+
 	@CreationTimestamp
+	@Column(name = "created_at")
 	private Date createdAt;
 
 	@UpdateTimestamp
+	@Column(name = "updated_at")
 	private Date updatedAt;
 }

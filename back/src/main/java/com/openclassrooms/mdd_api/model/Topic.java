@@ -5,6 +5,9 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 @Entity
 @Table(name = "topic")
@@ -18,7 +21,9 @@ public class Topic {
 	@Size(max = 55)
 	private String title;
 
-	@NotNull
 	@Size(max = 55)
 	private String content;
+
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "topics")
+	private List<User> users = new ArrayList<>();
 }

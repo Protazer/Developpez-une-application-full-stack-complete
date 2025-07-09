@@ -7,5 +7,7 @@ import java.util.List;
 public interface IUserService {
 	List<User> getAllUsers();
 
-	void deleteUser(Integer id);
+	User getUserById(int id) throws Throwable;
+
+	void deleteUser(int id);
 }

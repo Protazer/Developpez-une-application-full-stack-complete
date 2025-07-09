@@ -8,6 +8,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -25,6 +27,14 @@ public class Post {
 	@NotNull
 	@Size(max = 255)
 	private String content;
+
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+	@JoinColumn(name = "post_id")
+	private List<Comment> comments = new ArrayList<>();
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "topic_id")
+	private Topic topic;
 
 	@CreationTimestamp
 	private Date createdAt;
