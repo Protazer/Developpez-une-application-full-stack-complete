@@ -3,6 +3,7 @@ package com.openclassrooms.mdd_api.controllers;
 import com.openclassrooms.mdd_api.payload.request.UserRegisterDto;
 import com.openclassrooms.mdd_api.payload.response.UserAuthResponse;
 import com.openclassrooms.mdd_api.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +21,7 @@ public class AuthController {
 	}
 
 	@PostMapping("/register")
-	public ResponseEntity<UserAuthResponse> register(@RequestBody final UserRegisterDto user) {
+	public ResponseEntity<UserAuthResponse> register(@Valid @RequestBody final UserRegisterDto user) {
 		UserAuthResponse userAuthResponse = userService.registerUser(user);
 		return ResponseEntity.ok().body(userAuthResponse);
 	}
