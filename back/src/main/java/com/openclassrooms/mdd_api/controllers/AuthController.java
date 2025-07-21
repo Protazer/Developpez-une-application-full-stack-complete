@@ -1,5 +1,6 @@
 package com.openclassrooms.mdd_api.controllers;
 
+import com.openclassrooms.mdd_api.payload.request.UserLoginRequestDto;
 import com.openclassrooms.mdd_api.payload.request.UserRegisterDto;
 import com.openclassrooms.mdd_api.payload.response.UserAuthResponse;
 import com.openclassrooms.mdd_api.service.UserService;
@@ -23,6 +24,12 @@ public class AuthController {
 	@PostMapping("/register")
 	public ResponseEntity<UserAuthResponse> register(@Valid @RequestBody final UserRegisterDto user) {
 		UserAuthResponse userAuthResponse = userService.registerUser(user);
+		return ResponseEntity.ok().body(userAuthResponse);
+	}
+
+	@PostMapping("/login")
+	public ResponseEntity<UserAuthResponse> login(@Valid @RequestBody final UserLoginRequestDto user) {
+		UserAuthResponse userAuthResponse = userService.loginUser(user);
 		return ResponseEntity.ok().body(userAuthResponse);
 	}
 }
