@@ -3,7 +3,7 @@ import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ButtonComponent} from '../../shared/components/button/button.component';
 import {NgIf} from '@angular/common';
-import {AuthService} from '../../services/auth/auth.service';
+import {AuthService} from '../../services/auth.service';
 import {IAuthSuccess, IRegisterRequest} from '../../interfaces/auth.interface';
 
 @Component({
@@ -35,8 +35,8 @@ export class RegisterFormComponent implements OnInit {
     })
   }
 
-  invalidField(champ: string): boolean {
-    const ctrl = this.registerForm.get(champ);
+  invalidField(field: string): boolean {
+    const ctrl = this.registerForm.get(field);
     return !!(ctrl && ctrl.invalid && (ctrl.dirty || ctrl.touched));
   }
 
