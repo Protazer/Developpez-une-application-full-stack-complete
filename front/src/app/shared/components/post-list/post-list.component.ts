@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
-import {IPost} from '../post/post.component.type';
 import {PostComponent} from '../post/post.component';
 import {NgForOf} from '@angular/common';
+import {IPost} from '../../../interfaces/post.interface';
 
 @Component({
   selector: 'app-post-list',

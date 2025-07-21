@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
-import {IPost} from '../../shared/components/post/post.component.type';
 import {PostListComponent} from '../../shared/components/post-list/post-list.component';
 import {ButtonComponent} from '../../shared/components/button/button.component';
+import {IPost} from '../../interfaces/post.interface';
 
 @Component({
   selector: 'app-posts',
