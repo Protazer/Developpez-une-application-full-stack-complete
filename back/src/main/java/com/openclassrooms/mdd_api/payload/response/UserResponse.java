@@ -6,6 +6,6 @@ import com.openclassrooms.mdd_api.model.Topic;
 import java.time.LocalDate;
 import java.util.List;
 
-public record UserResponse(int id, String name, String email, LocalDate created_at,
-                           LocalDate updated_at, List<Topic> topics) {
+public record UserResponse(int id, String name, String email, List<Topic> topics, LocalDate created_at,
+                           LocalDate updated_at) {
 }
