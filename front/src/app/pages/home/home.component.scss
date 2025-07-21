@@ -1,7 +1,26 @@
-.center {
-  height: 100vh;
+.home {
   display: flex;
+  flex-flow: column nowrap;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+
+  &__links {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    width: 30%;
+  }
+
+  &__baseline {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__image {
+      object-fit: contain;
+      width: 70%;
+    }
+  }
 }

@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+import {ButtonComponent} from '../../shared/components/button/button.component';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
+  imports: [
+    ButtonComponent
+  ],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  styleUrl: './home.component.scss'
 })
-export class HomeComponent implements OnInit {
-  constructor() {}
+export class HomeComponent {
+  constructor(private router: Router) {
+  }
 
-  ngOnInit(): void {}
-
-  start() {
-    alert('Commencez par lire le README et à vous de jouer !');
+  handleNavigateTo(route: string) {
+    this.router.navigateByUrl(route);
   }
 }

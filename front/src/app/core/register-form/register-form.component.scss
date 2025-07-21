@@ -1,0 +1,58 @@
+@use 'variables';
+
+.register-form {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+
+  &__form-error {
+    display: flex;
+    justify-content: center;
+    max-width: 260px;
+
+    & span {
+      color: red;
+      font-weight: bold;
+    }
+  }
+
+  & > h2 {
+    font-weight: normal;
+    margin-bottom: 1rem;
+  }
+
+  &__group {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    margin: 1rem 0;
+    max-width: 260px;
+
+    &__invalid {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      justify-content: center;
+      margin: 0.5rem 0;
+      width: 100%;
+
+      & span {
+        text-align: center;
+        color: variables.$color-primary;
+        font-weight: 700;
+      }
+    }
+
+    & > input {
+      padding: 1rem 1rem;
+      border: 1px solid variables.$color-tertiary;
+      border-radius: 8px;
+      min-width: 250px;
+      font-size: 1rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+@use 'variables';
+
+.post {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: variables.$color-secondary;
+
+  & .post__header {
+    display: flex;
+    flex-flow: column nowrap;
+
+    &.post__header__title {
+      font-weight: bold;
+    }
+
+    & .post__header__details {
+      display: flex;
+      flex-flow: row nowrap;
+    }
+  }
+}

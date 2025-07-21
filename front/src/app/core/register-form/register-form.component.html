@@ -1,0 +1,35 @@
+<form (ngSubmit)="handleSubmit()" [formGroup]="registerForm" class="register-form">
+  <h2>Inscription</h2>
+  <div class="register-form__group">
+    <label for="name">Nom d'utilisateur</label>
+    <input formControlName="name" id="name" placeholder="Nom d'utilisateur" type="text"/>
+    <div *ngIf="invalidField('name')" class="register-form__group__invalid">
+      <span *ngIf="registerForm.controls['name'].hasError('required')">Nom d'utilisateur requis.</span>
+    </div>
+  </div>
+  <div class="register-form__group">
+    <label for="email">Adresse e-mail</label>
+    <input formControlName="email" id="email" placeholder="Adresse e-mail" type="email"/>
+    <div *ngIf="invalidField('email')" class="register-form__group__invalid">
+      <span *ngIf="registerForm.controls['email'].hasError('required')">Email requis.</span>
+      <span *ngIf="registerForm.controls['email'].hasError('email')">Format invalide.</span>
+    </div>
+  </div>
+  <div class="register-form__group">
+    <label for="password">Mot de passe</label>
+    <input formControlName="password" id="password" placeholder="Mot de passe" type="password"/>
+    <div *ngIf="invalidField('password')" class="register-form__group__invalid">
+      <span *ngIf="registerForm.controls['password'].hasError('required')">Mot de passe requis.</span>
+      <span *ngIf="registerForm.controls['password'].hasError('pattern')">
+        Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial.
+      </span>
+      <span *ngIf="registerForm.controls['password'].hasError('minlength')">
+        Minimum 8 caractères.
+      </span>
+    </div>
+  </div>
+  <div *ngIf="formError" class="register-form__form-error">
+    <span>Oups il y à une erreur.</span>
+  </div>
+  <app-button content="S'inscrire" type="submit" variant="default"/>
+</form>
