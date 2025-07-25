@@ -15,11 +15,13 @@ public class CommentService implements ICommentService {
 	private CommentService(final CommentRepository commentRepository) {
 		this.commentRepository = commentRepository;
 	}
-	
+
+	@Override
 	public List<Comment> getAllComments() {
 		return commentRepository.findAll();
 	}
 
+	@Override
 	public Optional<Comment> getCommentById(int id) {
 		return commentRepository.findById(id);
 	}

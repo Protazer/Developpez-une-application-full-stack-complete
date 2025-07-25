@@ -1,8 +1,11 @@
 package com.openclassrooms.mdd_api.service;
 
 import com.openclassrooms.mdd_api.model.User;
+import com.openclassrooms.mdd_api.payload.request.UserLoginRequestDto;
 import com.openclassrooms.mdd_api.payload.request.UserRegisterDto;
-import com.openclassrooms.mdd_api.payload.response.UserAuthResponse;
+import com.openclassrooms.mdd_api.payload.response.GetUserResponseDto;
+import com.openclassrooms.mdd_api.payload.response.UserAuthResponseDto;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 
 import java.util.List;
 
@@ -13,5 +16,9 @@ public interface IUserService {
 
 	void deleteUser(int id);
 
-	UserAuthResponse registerUser(final UserRegisterDto user);
+	UserAuthResponseDto registerUser(final UserRegisterDto user);
+
+	UserAuthResponseDto loginUser(final UserLoginRequestDto user);
+
+	GetUserResponseDto getUser(final JwtAuthenticationToken token);
 }

@@ -16,10 +16,12 @@ public class TopicService implements ITopicService {
 		this.topicRepository = topicRepository;
 	}
 
+	@Override
 	public List<Topic> getAllTopics() {
 		return topicRepository.findAll();
 	}
 
+	@Override
 	public Optional<Topic> getTopicById(int id) {
 		return topicRepository.findById(id);
 	}
