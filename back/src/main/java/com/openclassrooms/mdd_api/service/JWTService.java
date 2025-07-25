@@ -11,7 +11,7 @@ import java.time.temporal.ChronoUnit;
 
 
 @Service
-public class JWTService {
+public class JWTService implements IJWTService {
 
 	private final JwtEncoder jwtEncoder;
 
@@ -19,7 +19,7 @@ public class JWTService {
 		this.jwtEncoder = jwtEncoder;
 	}
 
-	
+	@Override
 	public String generateToken(final User user) {
 		Instant now = Instant.now();
 		JwtClaimsSet claims = JwtClaimsSet.builder().issuer("self").issuedAt(now).expiresAt(now.plus(1, ChronoUnit.DAYS)).subject(String.valueOf(user.getId())).build();
