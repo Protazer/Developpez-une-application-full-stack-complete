@@ -1,4 +1,35 @@
 <header class="header">
-  <img class="header__logo" src='logo_p6.png' alt="">
-  <nav class="header__nav"></nav>
+  <img alt="" class="header__logo" src='logo_p6.png'>
+  <nav *ngIf="$isLogged | async" class="header__nav">
+    <ul class="header__nav__links">
+      <li class="header__nav__links__item"><a (click)="logOut()" class="header__nav__links__item__link__logout">Se
+        déconnecter</a></li>
+      <li class="header__nav__links__item"><a [routerLinkActiveOptions]="{exact:true}"
+                                              class="header__nav__links__item__link" routerLink="/posts"
+                                              routerLinkActive="active">Articles</a></li>
+      <li class="header__nav__links__item"><a [routerLinkActiveOptions]="{exact:true}"
+                                              class="header__nav__links__item__link" routerLink="/topics"
+                                              routerLinkActive="active">Thèmes</a></li>
+
+      <li class="header__nav__links__item"><a [routerLinkActiveOptions]="{exact:true}"
+                                              class="header__nav__links__item__link" routerLink="/profile"
+                                              routerLinkActive="active">
+        <svg class="header__nav__links__item__link__user" fill="none" height="48" viewBox="0 0 48 48" width="48"
+             xmlns="http://www.w3.org/2000/svg">
+          <circle cx="24" cy="24" fill="#D9D9D9" r="22.5" stroke-width="3"/>
+          <path
+            d="M12.0001 36V32.8817C12.0001 31.2276 12.6572 29.6413 13.8268 28.4717C14.9964 27.3021 16.5827 26.645 18.2368 26.645H30.7101C32.3642 26.645 33.9505 27.3021 35.1201 28.4717C36.2897 29.6413 36.9468 31.2276 36.9468 32.8817V36"
+            stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+          <path
+            d="M24.4734 20.4733C21.029 20.4733 18.2368 17.6811 18.2368 14.2367C18.2368 10.7923 21.029 8 24.4734 8C27.9178 8 30.7101 10.7923 30.7101 14.2367C30.7101 17.6811 27.9178 20.4733 24.4734 20.4733Z"
+            stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+        </svg>
+
+
+      </a></li>
+    </ul>
+  </nav>
+  <ng-template #notLogged>
+
+  </ng-template>
 </header>

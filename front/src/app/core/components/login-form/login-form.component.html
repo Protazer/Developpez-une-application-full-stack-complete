@@ -1,0 +1,27 @@
+<form (ngSubmit)="handleSubmit()" [formGroup]="loginForm" class="login-form">
+  <h2>Se connecter</h2>
+  <div class="login-form__group">
+    <label for="name">E-mail ou nom d'utilisateur</label>
+    <input formControlName="name" id="name" placeholder="E-mail ou nom d'utilisateur" type="text"/>
+    <div *ngIf="invalidField('name')" class="login-form__group__invalid">
+      <span *ngIf="loginForm.controls['name'].hasError('required')">Nom d'utilisateur requis.</span>
+    </div>
+  </div>
+  <div class="login-form__group">
+    <label for="password">Mot de passe</label>
+    <input formControlName="password" id="password" placeholder="Mot de passe" type="password"/>
+    <div *ngIf="invalidField('password')" class="login-form__group__invalid">
+      <span *ngIf="loginForm.controls['password'].hasError('required')">Mot de passe requis.</span>
+      <span *ngIf="loginForm.controls['password'].hasError('pattern')">
+        Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial.
+      </span>
+      <span *ngIf="loginForm.controls['password'].hasError('minlength')">
+        Minimum 8 caractères.
+      </span>
+    </div>
+  </div>
+  <div *ngIf="formError.status" class="login-form__form-error">
+    <span>{{ formError.message }}</span>
+  </div>
+  <app-button content="Se connecter" type="submit" variant="default"/>
+</form>
