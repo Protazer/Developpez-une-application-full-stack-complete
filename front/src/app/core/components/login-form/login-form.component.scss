@@ -1,6 +1,6 @@
-@use 'variables';
+@use '../../../../styles/variables';
 
-.register-form {
+.login-form {
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
@@ -8,7 +8,6 @@
   &__form-error {
     display: flex;
     justify-content: center;
-    max-width: 260px;
 
     & span {
       color: red;
@@ -43,15 +42,20 @@
       }
     }
 
+
     & > input {
       padding: 1rem 1rem;
-      border: 1px solid variables.$color-tertiary;
+      border: 2px solid variables.$color-tertiary;
       border-radius: 8px;
       min-width: 250px;
       font-size: 1rem;
+      transition: all ease 0.3s;
+
 
       &:focus {
+        border-color: variables.$color-primary;
         outline: none;
+        transition: all ease 0.3s;
       }
     }
   }

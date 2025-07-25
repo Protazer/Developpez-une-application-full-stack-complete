@@ -1,10 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {ButtonComponent} from '../../shared/components/button/button.component';
+import {ButtonComponent} from '../../../shared/components/button/button.component';
 import {NgIf} from '@angular/common';
 import {AuthService} from '../../services/auth.service';
-import {IAuthSuccess, IRegisterRequest} from '../../interfaces/auth.interface';
+import {IAuthFailure, IAuthSuccess, IRegisterRequest} from '../../../interfaces/auth.interface';
+import {SessionService} from '../../services/session.service';
+import {IUser} from '../../../interfaces/user.interface';
 
 @Component({
   selector: 'app-register-form',
@@ -19,9 +21,12 @@ import {IAuthSuccess, IRegisterRequest} from '../../interfaces/auth.interface';
 export class RegisterFormComponent implements OnInit {
   registerForm!: FormGroup;
   passwordRegexp!: RegExp;
-  formError = false
+  formError: IAuthFailure = {
+    status: false,
+    message: ''
+  }
 
-  constructor(private fb: FormBuilder, private router: Router, private authservice: AuthService) {
+  constructor(private fb: FormBuilder, private router: Router, private authService: AuthService, private sessionService: SessionService) {
   }
 
   ngOnInit() {
@@ -42,13 +47,20 @@ export class RegisterFormComponent implements OnInit {
 
   handleSubmit() {
     if (this.registerForm.valid) {
-      this.authservice.register(this.registerForm.value as IRegisterRequest).subscribe({
+      this.authService.register(this.registerForm.value as IRegisterRequest).subscribe({
         next: (response: IAuthSuccess) => {
+          this.formError = {status: false, message: ''};
           localStorage.setItem('token', response.token);
-          this.router.navigateByUrl('/posts').then();
+          this.authService.me().subscribe({
+            next: (user: IUser) => {
+              this.sessionService.logIn(user);
+              this.router.navigateByUrl('/posts').then();
+            }, error: e => this.formError = {status: true, message: e.message}
+          })
+
         },
         error: e => {
-          this.formError = true;
+          this.formError = {status: true, message: e.message};
         }
       })
     } else {
