@@ -16,10 +16,12 @@ public class PostService implements IPostService {
 		this.postRepository = postRepository;
 	}
 
+	@Override
 	public List<Post> getAllPosts() {
 		return postRepository.findAll();
 	}
 
+	@Override
 	public Optional<Post> getPostById(int id) {
 		return postRepository.findById(id);
 	}

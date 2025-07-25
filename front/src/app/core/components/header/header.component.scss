@@ -12,4 +12,53 @@
   & .header__logo {
     height: inherit;
   }
+
+  &__nav__links {
+    display: flex;
+    flex-flow: row nowrap;
+    list-style: none;
+    align-items: center;
+
+
+    &__item {
+      margin: 0 1rem;
+
+      &__link {
+        color: variables.$color-tertiary;
+        text-decoration: none;
+        font-size: 1.2rem;
+
+        circle {
+          stroke: transparent;
+          stroke-width: 2;
+        }
+
+        path {
+          stroke: black;
+          stroke-width: 2;
+        }
+
+        &__logout {
+          color: red;
+          cursor: pointer;
+        }
+
+
+        &.active {
+          color: variables.$color-primary;
+
+          circle {
+            stroke: variables.$color-primary;
+            stroke-width: 2;
+          }
+
+          path {
+            stroke: variables.$color-primary;
+            stroke-width: 2;
+          }
+
+        }
+      }
+    }
+  }
 }

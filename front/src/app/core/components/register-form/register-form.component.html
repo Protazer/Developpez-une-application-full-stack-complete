@@ -28,8 +28,8 @@
       </span>
     </div>
   </div>
-  <div *ngIf="formError" class="register-form__form-error">
-    <span>Oups il y à une erreur.</span>
+  <div *ngIf="formError.status" class="register-form__form-error">
+    <span>{{ formError.message }}</span>
   </div>
   <app-button content="S'inscrire" type="submit" variant="default"/>
 </form>
