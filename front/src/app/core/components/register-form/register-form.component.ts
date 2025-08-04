@@ -55,12 +55,12 @@ export class RegisterFormComponent implements OnInit {
             next: (user: IUser) => {
               this.sessionService.logIn(user);
               this.router.navigateByUrl('/posts').then();
-            }, error: e => this.formError = {status: true, message: e.message}
+            }, error: e => this.formError = {status: true, message: e.error.message}
           })
 
         },
         error: e => {
-          this.formError = {status: true, message: e.message};
+          this.formError = {status: true, message: e.error.message};
         }
       })
     } else {

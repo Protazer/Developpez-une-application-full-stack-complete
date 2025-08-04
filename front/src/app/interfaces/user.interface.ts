@@ -8,3 +8,15 @@ export interface IUser {
   created_at: Date,
   updated_at: Date
 }
+
+export interface IUserUpdateRequest {
+  name: string,
+  email: string,
+  password: string,
+}
+
+export interface IProfileFormStatus {
+  status: boolean;
+  type: "success" | "error";
+  message: string;
+}

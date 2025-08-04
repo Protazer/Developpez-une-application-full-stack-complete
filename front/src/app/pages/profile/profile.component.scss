@@ -1,0 +1,21 @@
+@use 'variables';
+
+.profile {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+
+  &__separator {
+    width: 90%;
+    margin-bottom: 2rem;
+    color: variables.$color-tertiary;
+  }
+
+  &__user {
+    margin: 2rem;
+
+    & > h2 {
+      text-align: center;
+    }
+  }
+}

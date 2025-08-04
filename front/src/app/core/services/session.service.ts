@@ -22,6 +22,10 @@ export class SessionService {
     this.next();
   }
 
+  public updateUser(user: IUser): void {
+    this.user = user;
+  }
+
   public logOut(): void {
     localStorage.removeItem('token');
     this.user = undefined;

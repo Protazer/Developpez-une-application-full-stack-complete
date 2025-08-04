@@ -1,0 +1,33 @@
+<form (ngSubmit)="handleSubmit()" [formGroup]="profileForm" class="profile-form">
+  <div class="profile-form__group">
+    <input (focus)="handleOnFocus()" formControlName="username" id="username" placeholder="Username" type="text"/>
+    <div *ngIf="invalidField('username')" class="profile-form__group__invalid">
+      <span *ngIf="profileForm.controls['username'].hasError('required')">Nom d'utilisateur requis.</span>
+    </div>
+  </div>
+  <div class="profile-form__group">
+    <input (focus)="handleOnFocus()" formControlName="email" id="email" placeholder="Adresse e-mail" type="email"/>
+    <div *ngIf="invalidField('email')" class="profile-form__group__invalid">
+      <span *ngIf="profileForm.controls['email'].hasError('required')">Email requis.</span>
+      <span *ngIf="profileForm.controls['email'].hasError('email')">Format invalide.</span>
+    </div>
+  </div>
+  <div class="profile-form__group">
+    <input (focus)="handleOnFocus()" formControlName="password" id="password" placeholder="Mot de passe"
+           type="password"/>
+    <div *ngIf="invalidField('password')" class="profile-form__group__invalid">
+      <span *ngIf="profileForm.controls['password'].hasError('required')">Mot de passe requis.</span>
+      <span *ngIf="profileForm.controls['password'].hasError('pattern')">
+        Le mot de passe doit contenir une majuscule, une minuscule, un chiffre et un caractère spécial.
+      </span>
+      <span *ngIf="profileForm.controls['password'].hasError('minlength')">
+        Minimum 8 caractères.
+      </span>
+    </div>
+  </div>
+  <div *ngIf="formStatus.status" [ngClass]="formStatus.type === 'success' ? 'success' : 'error'"
+       class="profile-form__message">
+    <span>{{ formStatus.message }}</span>
+  </div>
+  <app-button content="Sauvegarder" type="submit" variant="default"/>
+</form>
