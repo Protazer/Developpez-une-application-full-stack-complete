@@ -13,17 +13,31 @@ import java.util.List;
 @Table(name = "topic")
 public class Topic {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int topicId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int topicId;
 
-	@NotNull
-	@Size(max = 55)
-	private String title;
+    @NotNull
+    @Size(max = 55)
+    private String title;
 
-	@Size(max = 55)
-	private String content;
+    @Size(max = 2000)
+    private String content;
 
-	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "topics")
-	private List<User> users = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "topics")
+    private List<User> users = new ArrayList<>();
+
+    public void addUser(User user) {
+        users.add(user);
+        List<Topic> userTopics = user.getTopics();
+        userTopics.add(this);
+        user.setTopics(userTopics);
+    }
+
+    public void removeUser(User user) {
+        users.remove(user);
+        List<Topic> userTopics = user.getTopics();
+        userTopics.remove(this);
+        user.setTopics(userTopics);
+    }
 }

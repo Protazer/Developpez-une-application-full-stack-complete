@@ -1,5 +1,6 @@
 package com.openclassrooms.mdd_api.controllers;
 
+import com.openclassrooms.mdd_api.exception.ApiException;
 import com.openclassrooms.mdd_api.payload.request.UserUpdateRequestDto;
 import com.openclassrooms.mdd_api.payload.response.GetUserResponseDto;
 import com.openclassrooms.mdd_api.service.UserService;
@@ -14,15 +15,20 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("api/user")
 public class UserController {
 
-	private final UserService userService;
+    private final UserService userService;
 
-	public UserController(final UserService userService) {
-		this.userService = userService;
-	}
+    public UserController(final UserService userService) {
+        this.userService = userService;
+    }
 
-	@PostMapping("")
-	public ResponseEntity<GetUserResponseDto> updateUser(final JwtAuthenticationToken token, @RequestBody final UserUpdateRequestDto request) {
-		GetUserResponseDto updatedUser = this.userService.updateUser(token, request);
-		return ResponseEntity.ok().body(updatedUser);
-	}
+    @PostMapping("")
+    public ResponseEntity<?> updateUser(final JwtAuthenticationToken token, @RequestBody final UserUpdateRequestDto request) {
+        try {
+            GetUserResponseDto updatedUser = this.userService.updateUser(token, request);
+            return ResponseEntity.ok().body(updatedUser);
+        } catch (ApiException e) {
+            return ResponseEntity.badRequest().body(e);
+        }
+
+    }
 }
