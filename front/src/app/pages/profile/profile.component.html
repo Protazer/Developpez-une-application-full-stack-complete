@@ -1,1 +1,15 @@
-<p>profile works!</p>
+<main *ngIf="user$ | async as user" class="profile">
+  <section class="profile__user">
+    <h2>Profil utilisateur</h2>
+    <app-profile-form [user]="user"/>
+  </section>
+  <hr class="profile__separator">
+  <section class="profile__topics">
+    <h2>Abonnements</h2>
+    <app-topic-list *ngIf="user.topics.length > 0 else emptyList" [topics]="user.topics" [user]="user"
+                    class="topic__list"/>
+    <ng-template #emptyList>
+      <p class="profile__emptyList">Vous n'êtes abonné à aucun thème.</p>
+    </ng-template>
+  </section>
+</main>

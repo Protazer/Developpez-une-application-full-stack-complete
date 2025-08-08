@@ -7,29 +7,25 @@ import {IUser} from '../../interfaces/user.interface';
 })
 export class SessionService {
 
-  public isLogged = false;
-  public user: IUser | undefined;
+  private userSubject = new BehaviorSubject<IUser | undefined>(undefined);
+  public user$: Observable<IUser | undefined> = this.userSubject.asObservable();
 
-  private isLoggedSubject = new BehaviorSubject<boolean>(this.isLogged);
-
-  public $isLogged(): Observable<boolean> {
-    return this.isLoggedSubject.asObservable();
-  }
+  private isLoggedSubject = new BehaviorSubject<boolean>(false);
+  public isLogged$: Observable<boolean> = this.isLoggedSubject.asObservable();
 
   public logIn(user: IUser): void {
-    this.user = user;
-    this.isLogged = true;
-    this.next();
+    this.userSubject.next(user);
+    this.isLoggedSubject.next(true);
+  }
+
+  public updateUser(user: IUser): void {
+    console.log(user)
+    this.userSubject.next(user);
   }
 
   public logOut(): void {
     localStorage.removeItem('token');
-    this.user = undefined;
-    this.isLogged = false;
-    this.next();
-  }
-
-  private next(): void {
-    this.isLoggedSubject.next(this.isLogged);
+    this.userSubject.next(undefined);
+    this.isLoggedSubject.next(false);
   }
 }

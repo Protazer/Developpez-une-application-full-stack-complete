@@ -1,11 +1,13 @@
 package com.openclassrooms.mdd_api.controllers;
 
+import com.openclassrooms.mdd_api.exception.ApiException;
 import com.openclassrooms.mdd_api.payload.request.UserLoginRequestDto;
 import com.openclassrooms.mdd_api.payload.request.UserRegisterDto;
 import com.openclassrooms.mdd_api.payload.response.GetUserResponseDto;
 import com.openclassrooms.mdd_api.payload.response.UserAuthResponseDto;
 import com.openclassrooms.mdd_api.service.UserService;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
@@ -14,27 +16,39 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api/auth")
 public class AuthController {
 
-	private final UserService userService;
+    private final UserService userService;
 
-	public AuthController(final UserService userService) {
-		this.userService = userService;
-	}
+    public AuthController(final UserService userService) {
+        this.userService = userService;
+    }
 
-	@PostMapping("/register")
-	public ResponseEntity<UserAuthResponseDto> register(@Valid @RequestBody final UserRegisterDto user) {
-		UserAuthResponseDto userAuthResponseDto = userService.registerUser(user);
-		return ResponseEntity.ok().body(userAuthResponseDto);
-	}
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@Valid @RequestBody final UserRegisterDto user) {
+        try {
+            UserAuthResponseDto userAuthResponseDto = userService.registerUser(user);
+            return ResponseEntity.ok().body(userAuthResponseDto);
+        } catch (ApiException e) {
+            return ResponseEntity.badRequest().body(e);
+        }
+    }
 
-	@PostMapping("/login")
-	public ResponseEntity<UserAuthResponseDto> login(@Valid @RequestBody final UserLoginRequestDto user) {
-		UserAuthResponseDto userAuthResponseDto = userService.loginUser(user);
-		return ResponseEntity.ok().body(userAuthResponseDto);
-	}
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@Valid @RequestBody final UserLoginRequestDto user) {
+        try {
+            UserAuthResponseDto userAuthResponseDto = userService.loginUser(user);
+            return ResponseEntity.ok().body(userAuthResponseDto);
+        } catch (ApiException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e);
+        }
+    }
 
-	@GetMapping("/me")
-	public ResponseEntity<GetUserResponseDto> getUser(final JwtAuthenticationToken token) {
-		GetUserResponseDto user = userService.getUser(token);
-		return ResponseEntity.ok().body(user);
-	}
+    @GetMapping("/me")
+    public ResponseEntity<?> getUser(final JwtAuthenticationToken token) {
+        try {
+            GetUserResponseDto user = userService.getUser(token);
+            return ResponseEntity.ok().body(user);
+        } catch (ApiException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e);
+        }
+    }
 }

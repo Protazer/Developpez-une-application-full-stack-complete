@@ -1,0 +1,5 @@
+<section *ngFor="let topic of topics" class="topic__container">
+  <app-topic (unsubscribedTopic)="unsubscribeTopic($event)" [subscribedToUser]="userTopicsIds.includes(topic.id)"
+             [topic]="topic"
+             class="topic"/>
+</section>

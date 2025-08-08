@@ -11,5 +11,6 @@ import {NgClass} from '@angular/common';
 })
 export class ButtonComponent {
   @Input() variant: "default" | "primary" = "default";
+  @Input() disabled?: boolean;
   @Input() content!: string;
 }

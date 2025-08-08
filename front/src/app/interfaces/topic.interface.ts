@@ -3,3 +3,7 @@ export interface IUserTopic {
   title: string;
   content: string;
 }
+
+export interface IUserTopicList {
+  topics: IUserTopic[];
+}
