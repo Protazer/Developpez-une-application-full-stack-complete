@@ -1,6 +1,6 @@
 <header class="header">
   <img alt="" class="header__logo" src='logo_p6.png'>
-  <nav *ngIf="$isLogged | async" class="header__nav">
+  <nav *ngIf="isLogged$ | async; else notLogged" class="header__nav">
     <ul class="header__nav__links">
       <li class="header__nav__links__item"><a (click)="logOut()" class="header__nav__links__item__link__logout">Se
         déconnecter</a></li>

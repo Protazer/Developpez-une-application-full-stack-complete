@@ -25,7 +25,7 @@
     flex-flow: column nowrap;
     align-items: flex-start;
     margin: 1rem 0;
-    max-width: 260px;
+    max-width: 270px;
 
     &__invalid {
       display: flex;
@@ -46,7 +46,7 @@
       padding: 1rem 1rem;
       border: 2px solid variables.$color-primary;
       border-radius: 8px;
-      min-width: 250px;
+      min-width: 270px;
       font-size: 1rem;
       transition: all ease 0.3s;
 
