@@ -17,13 +17,13 @@ import {Router, RouterLink, RouterLinkActive} from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
-  public $isLogged?: Observable<boolean>;
+  public isLogged$?: Observable<boolean>;
 
   constructor(private sessionService: SessionService, private router: Router) {
   }
 
   ngOnInit() {
-    this.$isLogged = this.sessionService.$isLogged();
+    this.isLogged$ = this.sessionService.isLogged$;
   }
 
   public logOut(): void {

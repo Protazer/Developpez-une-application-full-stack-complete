@@ -1,0 +1,18 @@
+@use 'variables';
+
+
+.topic {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: variables.$color-secondary;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.topic__container {
+  display: flex;
+  flex: 40%;
+  margin: 1rem 2rem;
+  width: 100%;
+}

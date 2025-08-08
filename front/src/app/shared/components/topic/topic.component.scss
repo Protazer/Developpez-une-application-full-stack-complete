@@ -1,0 +1,17 @@
+@use 'variables';
+
+.topic {
+  &__title {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  &__action {
+    display: flex;
+    justify-content: center;
+  }
+
+
+}
+
+

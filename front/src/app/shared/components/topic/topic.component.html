@@ -1,0 +1,11 @@
+<article class="topic">
+  <h3 class="topic__title">{{ topic.title }}</h3>
+  <p class="topic__content">
+    {{ topic.content | truncate:[150] }}
+  </p>
+  <div class="topic__action">
+    <app-button (click)="handleOnSubscribe()" [content]="getTopicAction()"
+                [disabled]="!subscribedToUser && !canUnsubscribe"
+                variant="default"/>
+  </div>
+</article>
