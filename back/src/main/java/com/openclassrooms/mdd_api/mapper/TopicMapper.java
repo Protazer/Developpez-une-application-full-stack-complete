@@ -1,27 +1,23 @@
 package com.openclassrooms.mdd_api.mapper;
 
 import com.openclassrooms.mdd_api.model.Topic;
-import com.openclassrooms.mdd_api.payload.response.TopicUserDto;
-import com.openclassrooms.mdd_api.payload.response.TopicUserListDto;
 import com.openclassrooms.mdd_api.payload.response.UserTopicDto;
-import com.openclassrooms.mdd_api.payload.response.UserTopicListDto;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class TopicMapper {
 
-    public UserTopicListDto toUserTopicList(final List<UserTopicDto> topics) {
-        return new UserTopicListDto(topics);
-    }
 
-    public TopicUserListDto toTopicUserList(final List<TopicUserDto> topicUsers) {
-        return new TopicUserListDto(topicUsers);
-    }
-
-    public TopicUserDto toTopicUser(final TopicUserDto topicUser) {
-        return new TopicUserDto(topicUser.id(), topicUser.name(), topicUser.email());
+    public List<UserTopicDto> toUserTopicList(final List<Topic> topics) {
+        List<UserTopicDto> topicsList = new ArrayList<>();
+        topics.forEach(topic -> {
+            UserTopicDto currentTopic = this.toUserTopicDto(topic);
+            topicsList.add(currentTopic);
+        });
+        return topicsList;
     }
 
     public UserTopicDto toUserTopicDto(final Topic topic) {
