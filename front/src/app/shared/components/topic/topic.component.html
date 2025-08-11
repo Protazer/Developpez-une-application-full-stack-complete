@@ -5,7 +5,7 @@
   </p>
   <div class="topic__action">
     <app-button (click)="handleOnSubscribe()" [content]="getTopicAction()"
-                [disabled]="!subscribedToUser && !canUnsubscribe"
+                [disabled]="subscribedToUser && !canUnsubscribe"
                 variant="default"/>
   </div>
 </article>

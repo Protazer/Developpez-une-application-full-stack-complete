@@ -1,0 +1,9 @@
+.topics {
+  &__list {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 2%;
+    width: 100%;
+  }
+}

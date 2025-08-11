@@ -19,7 +19,6 @@ export class SessionService {
   }
 
   public updateUser(user: IUser): void {
-    console.log(user)
     this.userSubject.next(user);
   }
 
