@@ -21,7 +21,7 @@ public class Topic {
     @Size(max = 55)
     private String title;
 
-    @Size(max = 2000)
+    @Size(max = 1000)
     private String content;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "topics")

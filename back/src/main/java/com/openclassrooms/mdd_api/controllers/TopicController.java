@@ -1,11 +1,13 @@
 package com.openclassrooms.mdd_api.controllers;
 
 import com.openclassrooms.mdd_api.exception.ApiException;
-import com.openclassrooms.mdd_api.payload.response.UserTopicListDto;
+import com.openclassrooms.mdd_api.payload.response.UserTopicDto;
 import com.openclassrooms.mdd_api.service.TopicService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("api/topics")
@@ -24,17 +26,17 @@ public class TopicController {
     @PutMapping("/subscribe/{id}")
     public ResponseEntity<?> subscribeTopic(final JwtAuthenticationToken token, @PathVariable final int id) {
         try {
-            UserTopicListDto userTopics = this.topicService.subscribeTopic(token, id);
+            List<UserTopicDto> userTopics = this.topicService.subscribeTopic(token, id);
             return ResponseEntity.ok().body(userTopics);
         } catch (ApiException e) {
             return ResponseEntity.badRequest().body(e);
         }
     }
 
-    @PutMapping(value = "/unsubscribe/{id}")
+    @PutMapping("/unsubscribe/{id}")
     public ResponseEntity<?> unsubscribeTopic(final JwtAuthenticationToken token, @PathVariable final int id) {
         try {
-            UserTopicListDto userTopics = this.topicService.unsubscribeTopic(token, id);
+            List<UserTopicDto> userTopics = this.topicService.unsubscribeTopic(token, id);
             return ResponseEntity.ok().body(userTopics);
         } catch (ApiException e) {
             return ResponseEntity.badRequest().body(e);

@@ -4,6 +4,3 @@ export interface IUserTopic {
   content: string;
 }
 
-export interface IUserTopicList {
-  topics: IUserTopic[];
-}
