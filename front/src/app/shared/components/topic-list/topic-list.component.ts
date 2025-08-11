@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {NgForOf} from "@angular/common";
 import {IUserTopic} from '../../../interfaces/topic.interface';
 import {TopicComponent} from '../topic/topic.component';
@@ -15,31 +15,35 @@ import {SessionService} from '../../../core/services/session.service';
   templateUrl: './topic-list.component.html',
   styleUrl: './topic-list.component.scss'
 })
-export class TopicListComponent implements OnInit {
+export class TopicListComponent {
   @Input() user!: IUser;
   @Input() topics!: IUserTopic[];
-  userTopicsIds!: string[];
 
 
   constructor(private topicService: TopicService, private sessionService: SessionService) {
   }
 
-  ngOnInit() {
-    this.userTopicsIds = this.user.topics.map(topic => topic.id);
-  }
 
-
-  public unsubscribeTopic(topicId: number): void {
-    this.topicService.unsubscribeTopic(Number(topicId)).subscribe({
-      next: (value) => {
-        console.log(value);
-        const updatedUser: IUser = {...this.user, topics: value.topics};
+  public subscribeTopic(topicId: number): void {
+    this.topicService.subscribeTopic(topicId).subscribe(({
+      next: (response) => {
+        const updatedUser: IUser = {...this.user, topics: response};
         this.sessionService.updateUser(updatedUser);
       },
-      error: (error: any) => {
-        console.log("error : ", error);
-      }
+    }))
+  }
+
+  public unsubscribeTopic(topicId: number): void {
+    this.topicService.unsubscribeTopic(topicId).subscribe({
+      next: (response) => {
+        const updatedUser: IUser = {...this.user, topics: response};
+        this.sessionService.updateUser(updatedUser);
+      },
     });
+  }
+
+  public isSubscribedTopic(topicId: string): boolean {
+    return this.user.topics.map(topic => topic.id).includes(topicId);
   }
 
 

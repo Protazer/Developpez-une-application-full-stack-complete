@@ -1,3 +1,7 @@
-<main class="topics">
-  <app-topic-list></app-topic-list>
+<main *ngIf="user$ | async as user" class="topics">
+
+  <app-topic-list [topics]="topics" [user]="user"
+                  class="topics__list"/>
+
 </main>
+

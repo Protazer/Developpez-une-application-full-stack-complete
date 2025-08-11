@@ -3,7 +3,6 @@ import {IUserTopic} from '../../../interfaces/topic.interface';
 import {Router} from '@angular/router';
 import {ButtonComponent} from '../button/button.component';
 import {TruncatePipe} from '../../pipes/truncate.pipe';
-import {TopicService} from '../../../core/services/topic.service';
 
 @Component({
   selector: 'app-topic',
@@ -19,11 +18,12 @@ export class TopicComponent implements OnInit {
   @Input({required: true}) topic!: IUserTopic
   @Input() subscribedToUser: boolean = false;
   @Input() subscribedTopic!: (id: number) => void;
-  @Output() unsubscribedTopic = new EventEmitter<number>();
+  @Output() unsubscribeTopic = new EventEmitter<number>();
+  @Output() subscribeTopic = new EventEmitter<number>();
 
   canUnsubscribe: boolean = false;
 
-  constructor(private router: Router, private topicService: TopicService) {
+  constructor(private router: Router) {
   }
 
   ngOnInit() {
@@ -42,13 +42,9 @@ export class TopicComponent implements OnInit {
 
   handleOnSubscribe() {
     if (this.subscribedToUser && this.canUnsubscribe) {
-      console.log("Unsubscribe to User");
-      this.unsubscribedTopic.emit(Number(this.topic.id))
+      this.unsubscribeTopic.emit(Number(this.topic.id));
     } else {
-      console.log("subscribe to User");
-      this.topicService.subscribeTopic(Number(this.topic.id));
+      this.subscribeTopic.emit(Number(this.topic.id));
     }
-
   }
-
 }
