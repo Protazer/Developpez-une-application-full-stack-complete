@@ -1,8 +1,43 @@
 .posts {
+  &__actions__header {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 4%;
+
+    &__sort {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &__label {
+        font-weight: bold;
+        font-size: 1rem;
+        margin-right: 0.5rem;
+      }
+
+      &__icon--up {
+        transform: rotate(180deg);
+        transition: all ease 0.5s;
+      }
+
+      &__icon--down {
+        transition: all ease 0.5s;
+      }
+    }
+  }
+
   &__list {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    padding: 2%;
+    width: 100%;
+    padding: 1rem 4%;
+    gap: 2rem;
   }
 }

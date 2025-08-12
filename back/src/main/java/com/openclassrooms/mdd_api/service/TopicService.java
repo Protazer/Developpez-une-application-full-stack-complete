@@ -1,10 +1,10 @@
 package com.openclassrooms.mdd_api.service;
 
+import com.openclassrooms.mdd_api.dto.topic.GetTopicResponseDto;
 import com.openclassrooms.mdd_api.exception.ApiException;
 import com.openclassrooms.mdd_api.mapper.TopicMapper;
 import com.openclassrooms.mdd_api.model.Topic;
 import com.openclassrooms.mdd_api.model.User;
-import com.openclassrooms.mdd_api.payload.response.UserTopicDto;
 import com.openclassrooms.mdd_api.repository.TopicRepository;
 import com.openclassrooms.mdd_api.repository.UserRepository;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
@@ -28,14 +28,14 @@ public class TopicService implements ITopicService {
     }
 
     @Override
-    public List<UserTopicDto> getAllTopics() {
+    public List<GetTopicResponseDto> getAllTopics() {
         List<Topic> topics = topicRepository.findAll();
         topics.sort(Comparator.comparing(Topic::getTitle));
-        return this.topicMapper.toUserTopicList(topics);
+        return topics.stream().map(this.topicMapper::toTopicDto).toList();
     }
 
     @Override
-    public List<UserTopicDto> unsubscribeTopic(JwtAuthenticationToken token, int id) {
+    public List<GetTopicResponseDto> unsubscribeTopic(JwtAuthenticationToken token, int id) {
         int userId = Integer.parseInt(token.getToken().getSubject());
         Optional<User> user = this.userRepository.findById(userId);
         Optional<Topic> foundTopic = this.topicRepository.findById(id);
@@ -45,14 +45,14 @@ public class TopicService implements ITopicService {
             this.topicRepository.save(currentTopic);
             List<Topic> topicsList = user.get().getTopics();
             topicsList.sort(Comparator.comparing(Topic::getTitle));
-            return this.topicMapper.toUserTopicList(topicsList);
+            return topicsList.stream().map(this.topicMapper::toTopicDto).toList();
         } else {
             throw new ApiException("Erreur lors du désabonnement !");
         }
     }
 
     @Override
-    public List<UserTopicDto> subscribeTopic(JwtAuthenticationToken token, int id) {
+    public List<GetTopicResponseDto> subscribeTopic(JwtAuthenticationToken token, int id) {
         int userId = Integer.parseInt(token.getToken().getSubject());
         Optional<User> user = this.userRepository.findById(userId);
         Optional<Topic> foundTopic = this.topicRepository.findById(id);
@@ -61,7 +61,7 @@ public class TopicService implements ITopicService {
             this.topicRepository.save(foundTopic.get());
             List<Topic> topicsList = user.get().getTopics();
             topicsList.sort(Comparator.comparing(Topic::getTitle));
-            return this.topicMapper.toUserTopicList(topicsList);
+            return topicsList.stream().map(this.topicMapper::toTopicDto).toList();
         } else {
             throw new ApiException("Erreur lors de l'abonnement !");
         }

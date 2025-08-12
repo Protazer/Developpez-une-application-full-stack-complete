@@ -16,29 +16,33 @@ import java.util.List;
 @Table(name = "post")
 public class Post {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int postId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int postId;
 
-	@NotNull
-	@Size(max = 55)
-	private String title;
+    @NotNull
+    @Size(max = 55)
+    private String title;
 
-	@NotNull
-	@Size(max = 255)
-	private String content;
+    @NotNull
+    @Size(max = 255)
+    private String content;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-	@JoinColumn(name = "post_id")
-	private List<Comment> comments = new ArrayList<>();
+    @NotNull
+    @Size(max = 55)
+    private String author;
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "topic_id")
-	private Topic topic;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @JoinColumn(name = "post_id")
+    private List<Comment> comments = new ArrayList<>();
 
-	@CreationTimestamp
-	private Date createdAt;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "topic_id")
+    private Topic topic;
 
-	@UpdateTimestamp
-	private Date updatedAt;
+    @CreationTimestamp
+    private Date createdAt;
+
+    @UpdateTimestamp
+    private Date updatedAt;
 }

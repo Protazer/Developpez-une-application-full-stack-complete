@@ -1,6 +1,17 @@
 <main class="posts">
-  <section class="actions__header">
-    <app-button content="Créer un article"/>
+  <section class="posts__actions__header">
+    <app-button (click)="handleOnCreatePost()" class="posts__actions__header__create" content="Créer un article"/>
+    <div (click)="handleSortPosts()" class="posts__actions__header__sort">
+      <span class="posts__actions__header__sort__label">Trier par</span>
+      <fa-icon [icon]="faArrowDown"
+               [ngClass]="sortType === 'asc' ? 'posts__actions__header__sort__icon--down' : 'posts__actions__header__sort__icon--up'"
+      />
+    </div>
   </section>
-  <app-post-list [posts]="posts" class="posts__list"></app-post-list>
+  <app-post-list *ngIf="posts.length > 0; else emptyList " [posts]="posts" class="posts__list"></app-post-list>
+  <ng-template #emptyList>
+    <p class="post__emptyList">Il n'y a aucun article à afficher.</p>
+  </ng-template>
 </main>
+
+

@@ -1,10 +1,10 @@
 package com.openclassrooms.mdd_api.controllers;
 
+import com.openclassrooms.mdd_api.dto.user.GetUserResponseDto;
+import com.openclassrooms.mdd_api.dto.user.UserAuthResponseDto;
+import com.openclassrooms.mdd_api.dto.user.UserLoginRequestDto;
+import com.openclassrooms.mdd_api.dto.user.UserRegisterRequestDto;
 import com.openclassrooms.mdd_api.exception.ApiException;
-import com.openclassrooms.mdd_api.payload.request.UserLoginRequestDto;
-import com.openclassrooms.mdd_api.payload.request.UserRegisterDto;
-import com.openclassrooms.mdd_api.payload.response.GetUserResponseDto;
-import com.openclassrooms.mdd_api.payload.response.UserAuthResponseDto;
 import com.openclassrooms.mdd_api.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@Valid @RequestBody final UserRegisterDto user) {
+    public ResponseEntity<?> register(@Valid @RequestBody final UserRegisterRequestDto user) {
         try {
             UserAuthResponseDto userAuthResponseDto = userService.registerUser(user);
             return ResponseEntity.ok().body(userAuthResponseDto);

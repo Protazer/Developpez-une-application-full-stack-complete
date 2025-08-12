@@ -8,11 +8,13 @@
   width: 100%;
   padding: 1rem;
   border-radius: 8px;
+
+  &__container {
+    display: flex;
+    flex: 40%;
+    margin: 1rem 2rem;
+    width: 100%;
+  }
 }
 
-.topic__container {
-  display: flex;
-  flex: 40%;
-  margin: 1rem 2rem;
-  width: 100%;
-}
+

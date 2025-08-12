@@ -1,8 +1,8 @@
 package com.openclassrooms.mdd_api.controllers;
 
+import com.openclassrooms.mdd_api.dto.user.GetUserResponseDto;
+import com.openclassrooms.mdd_api.dto.user.UserUpdateRequestDto;
 import com.openclassrooms.mdd_api.exception.ApiException;
-import com.openclassrooms.mdd_api.payload.request.UserUpdateRequestDto;
-import com.openclassrooms.mdd_api.payload.response.GetUserResponseDto;
 import com.openclassrooms.mdd_api.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;

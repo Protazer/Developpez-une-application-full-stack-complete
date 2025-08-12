@@ -1,4 +1,4 @@
-package com.openclassrooms.mdd_api.payload.request;
+package com.openclassrooms.mdd_api.dto.user;
 
 import jakarta.validation.constraints.NotEmpty;
 
