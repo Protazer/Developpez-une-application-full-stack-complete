@@ -1,12 +1,11 @@
 package com.openclassrooms.mdd_api.service;
 
-import com.openclassrooms.mdd_api.model.Comment;
+import com.openclassrooms.mdd_api.dto.comment.GetCommentResponseDto;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface ICommentService {
-	List<Comment> getAllComments();
+    List<GetCommentResponseDto> getAllComments();
 
-	Optional<Comment> getCommentById(int id);
+    GetCommentResponseDto getCommentById(int id);
 }

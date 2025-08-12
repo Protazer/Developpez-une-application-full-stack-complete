@@ -1,5 +1,20 @@
-.post__container {
+@use "variables";
+
+.post {
   display: flex;
-  flex: 40%;
-  margin: 2rem;
+  flex-flow: column wrap;
+  background-color: variables.$color-secondary;
+  width: 100%;
+  padding: 1rem;
+  border-radius: 8px;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__container {
+    display: flex;
+    flex: 48%;
+    width: 100%;
+  }
 }

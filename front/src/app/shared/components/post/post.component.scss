@@ -5,17 +5,23 @@
   flex-flow: column nowrap;
   background-color: variables.$color-secondary;
 
-  &.post__header {
+  &__header {
     display: flex;
     flex-flow: column nowrap;
 
-    &.post__header__title {
+    &__title {
       font-weight: bold;
+      padding-bottom: 1rem;
     }
 
-    &.post__header__details {
+    &__details {
       display: flex;
       flex-flow: row nowrap;
+      padding-bottom: 1rem;
+
+      &__date {
+        margin-right: 20%;
+      }
     }
   }
 }
