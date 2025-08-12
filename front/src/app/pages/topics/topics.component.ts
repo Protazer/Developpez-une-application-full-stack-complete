@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TopicListComponent} from '../../shared/components/topic-list/topic-list.component';
-import {IUserTopic} from '../../interfaces/topic.interface';
+import {ITopic} from '../../interfaces/topic.interface';
 import {TopicService} from '../../core/services/topic.service';
 import {Observable} from 'rxjs';
 import {IUser} from '../../interfaces/user.interface';
@@ -19,7 +19,7 @@ import {AsyncPipe, NgIf} from '@angular/common';
 })
 export class TopicsComponent implements OnInit {
   public user$!: Observable<IUser | undefined>;
-  public topics!: IUserTopic[];
+  public topics!: ITopic[];
 
   constructor(private topicService: TopicService, private sessionService: SessionService) {
   }
@@ -27,7 +27,7 @@ export class TopicsComponent implements OnInit {
   ngOnInit() {
     this.user$ = this.sessionService.user$;
     this.topicService.getAllTopics().subscribe({
-      next: (topics: IUserTopic[]) => this.topics = topics
+      next: (topics: ITopic[]) => this.topics = topics
     });
   }
 }

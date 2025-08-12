@@ -5,3 +5,9 @@ export interface IPost {
   created_at: string;
   author: string;
 }
+
+export interface ICreatePostFormStatus {
+  status: boolean;
+  message: string;
+  type?: "success" | "error";
+}

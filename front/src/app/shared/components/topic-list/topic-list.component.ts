@@ -1,6 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {NgForOf} from "@angular/common";
-import {IUserTopic} from '../../../interfaces/topic.interface';
+import {ITopic} from '../../../interfaces/topic.interface';
 import {TopicComponent} from '../topic/topic.component';
 import {IUser} from '../../../interfaces/user.interface';
 import {TopicService} from '../../../core/services/topic.service';
@@ -17,7 +17,7 @@ import {SessionService} from '../../../core/services/session.service';
 })
 export class TopicListComponent {
   @Input() user!: IUser;
-  @Input() topics!: IUserTopic[];
+  @Input() topics!: ITopic[];
 
 
   constructor(private topicService: TopicService, private sessionService: SessionService) {
