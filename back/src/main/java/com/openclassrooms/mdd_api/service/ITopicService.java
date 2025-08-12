@@ -1,14 +1,14 @@
 package com.openclassrooms.mdd_api.service;
 
-import com.openclassrooms.mdd_api.payload.response.UserTopicDto;
+import com.openclassrooms.mdd_api.dto.topic.GetTopicResponseDto;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 
 import java.util.List;
 
 public interface ITopicService {
-    List<UserTopicDto> getAllTopics();
+    List<GetTopicResponseDto> getAllTopics();
 
-    List<UserTopicDto> subscribeTopic(JwtAuthenticationToken token, int userId);
+    List<GetTopicResponseDto> subscribeTopic(JwtAuthenticationToken token, int userId);
 
-    List<UserTopicDto> unsubscribeTopic(JwtAuthenticationToken token, int userId);
+    List<GetTopicResponseDto> unsubscribeTopic(JwtAuthenticationToken token, int userId);
 }

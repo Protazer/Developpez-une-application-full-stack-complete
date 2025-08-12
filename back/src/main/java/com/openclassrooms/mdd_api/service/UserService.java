@@ -1,19 +1,14 @@
 package com.openclassrooms.mdd_api.service;
 
+import com.openclassrooms.mdd_api.dto.user.*;
 import com.openclassrooms.mdd_api.exception.ApiException;
 import com.openclassrooms.mdd_api.mapper.UserMapper;
 import com.openclassrooms.mdd_api.model.User;
-import com.openclassrooms.mdd_api.payload.request.UserLoginRequestDto;
-import com.openclassrooms.mdd_api.payload.request.UserRegisterDto;
-import com.openclassrooms.mdd_api.payload.request.UserUpdateRequestDto;
-import com.openclassrooms.mdd_api.payload.response.GetUserResponseDto;
-import com.openclassrooms.mdd_api.payload.response.UserAuthResponseDto;
 import com.openclassrooms.mdd_api.repository.UserRepository;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -32,33 +27,9 @@ public class UserService implements IUserService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
-    @Override
-    public List<User> getAllUsers() {
-        return this.userRepository.findAll();
-    }
 
     @Override
-    public User getUserById(int id) {
-        Optional<User> user = this.userRepository.findById(id);
-        if (user.isPresent()) {
-            return user.get();
-        } else {
-            throw new ApiException("Cet utilisateur n'existe pas");
-        }
-    }
-
-    @Override
-    public void deleteUser(int id) {
-        Optional<User> foundedUser = this.userRepository.findById(id);
-        if (foundedUser.isPresent()) {
-            this.userRepository.delete(foundedUser.get());
-        } else {
-            throw new ApiException("Cet utilisateur n'existe pas");
-        }
-    }
-
-    @Override
-    public UserAuthResponseDto registerUser(final UserRegisterDto user) {
+    public UserAuthResponseDto registerUser(final UserRegisterRequestDto user) {
         Optional<User> emailExist = this.userRepository.findByEmail(user.email());
         Optional<User> nameExist = this.userRepository.findByName(user.name());
         if (emailExist.isPresent()) {
@@ -92,7 +63,7 @@ public class UserService implements IUserService {
         int userId = Integer.parseInt(token.getToken().getSubject());
         Optional<User> user = this.userRepository.findById(userId);
         if (user.isPresent()) {
-            return this.userMapper.toDto(user.get());
+            return this.userMapper.toGetUserResponseDto(user.get());
         } else {
             throw new ApiException("Cet utilisateur n'existe pas");
         }
@@ -114,7 +85,7 @@ public class UserService implements IUserService {
             }
             User updatedUser = this.userMapper.toUpdatedUser(foundUser.get(), user);
             this.userRepository.save(updatedUser);
-            return this.userMapper.toDto(updatedUser);
+            return this.userMapper.toGetUserResponseDto(updatedUser);
         } else {
             throw new ApiException("Cet utilisateur n'existe pas");
         }

@@ -7,7 +7,7 @@
     </div>
   </div>
   <p class="post__content">
-    {{ post.content }}
+    {{ post.content | truncate:[250] }}
   </p>
 
 </article>
