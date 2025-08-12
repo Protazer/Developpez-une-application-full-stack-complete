@@ -1,0 +1,19 @@
+.create-post {
+  display: flex;
+  flex-flow: column nowrap;
+  height: calc(100vh - 90px);
+  width: 100vw;
+
+  &__baseline {
+    padding: 1rem 0 0 2rem;
+
+    &__arrow {
+      font-size: 40px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+  }
+}
