@@ -28,9 +28,9 @@ public class Post {
     @Size(max = 255)
     private String content;
 
-    @NotNull
-    @Size(max = 55)
-    private String author;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User author;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "post_id")
