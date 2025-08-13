@@ -57,7 +57,6 @@ export class ProfileFormComponent implements OnInit {
           this.formStatus = {status: true, type: "success", message: 'Utilisateur mis à jour'};
         },
         error: (err) => {
-          console.log(err)
           this.formStatus = {status: true, type: "error", message: err.error.message};
         }
       })
