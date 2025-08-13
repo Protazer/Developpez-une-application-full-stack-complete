@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {TopicListComponent} from '../../shared/components/topic-list/topic-list.component';
 import {AsyncPipe, NgIf} from '@angular/common';
 import {Observable, Subscription} from 'rxjs';
+import {LoaderComponent} from '../../shared/components/loader/loader.component';
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +14,8 @@ import {Observable, Subscription} from 'rxjs';
     ProfileFormComponent,
     TopicListComponent,
     NgIf,
-    AsyncPipe
+    AsyncPipe,
+    LoaderComponent
   ],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'

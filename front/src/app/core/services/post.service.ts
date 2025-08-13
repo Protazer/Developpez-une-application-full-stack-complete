@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {IPost} from '../../interfaces/post.interface';
+import {ICreatePostRequest, IPost} from '../../interfaces/post.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,5 +14,9 @@ export class PostService {
 
   public getAllPosts() {
     return this.http.get<IPost[]>(this.topicApiPath);
+  }
+
+  public createPost(post: ICreatePostRequest) {
+    return this.http.post(this.topicApiPath, post);
   }
 }

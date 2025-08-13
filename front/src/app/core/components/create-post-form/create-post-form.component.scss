@@ -5,17 +5,22 @@
   flex-flow: column nowrap;
   align-items: center;
 
-  &__form-error {
+  &__message {
     display: flex;
     justify-content: center;
 
-    & span {
+    &.success span {
+      color: green;
+      font-weight: bold;
+    }
+
+    &.error span {
       color: red;
       font-weight: bold;
     }
   }
 
-  & > h2 {
+  & h2 {
     font-weight: normal;
     margin-bottom: 1rem;
   }

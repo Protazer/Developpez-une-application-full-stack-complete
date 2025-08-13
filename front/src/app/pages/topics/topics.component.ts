@@ -6,13 +6,15 @@ import {Observable} from 'rxjs';
 import {IUser} from '../../interfaces/user.interface';
 import {SessionService} from '../../core/services/session.service';
 import {AsyncPipe, NgIf} from '@angular/common';
+import {LoaderComponent} from '../../shared/components/loader/loader.component';
 
 @Component({
   selector: 'app-topics',
   imports: [
     TopicListComponent,
     AsyncPipe,
-    NgIf
+    NgIf,
+    LoaderComponent
   ],
   templateUrl: './topics.component.html',
   styleUrl: './topics.component.scss'
