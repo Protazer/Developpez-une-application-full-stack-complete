@@ -27,6 +27,15 @@ public class PostController {
         }
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getPostById(@PathVariable final int id) {
+        try {
+            return ResponseEntity.ok().body(this.postService.getPostById(id));
+        } catch (ApiException e) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e);
+        }
+    }
+
     @PostMapping
     public ResponseEntity<?> createPost(final JwtAuthenticationToken token, @Valid @RequestBody final CreatePostRequestDto request) {
         try {

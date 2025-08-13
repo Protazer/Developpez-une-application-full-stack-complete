@@ -60,7 +60,12 @@ public class PostService implements IPostService {
     }
 
     @Override
-    public Optional<Post> getPostById(int id) {
-        return postRepository.findById(id);
+    public GetPostResponseDto getPostById(int id) {
+        Optional<Post> foundPost = this.postRepository.findById(id);
+        if (foundPost.isPresent()) {
+            return postMapper.toGetPostResponseDto(foundPost.get());
+        } else {
+            throw new ApiException("Post non trouvé");
+        }
     }
 }
