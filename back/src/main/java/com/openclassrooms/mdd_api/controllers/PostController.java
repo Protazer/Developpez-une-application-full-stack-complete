@@ -1,13 +1,13 @@
 package com.openclassrooms.mdd_api.controllers;
 
+import com.openclassrooms.mdd_api.dto.post.CreatePostRequestDto;
 import com.openclassrooms.mdd_api.exception.ApiException;
 import com.openclassrooms.mdd_api.service.PostService;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api/posts")
@@ -24,6 +24,16 @@ public class PostController {
             return ResponseEntity.ok().body(this.postService.getAllPostsByTopicIds(token));
         } catch (ApiException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e);
+        }
+    }
+
+    @PostMapping
+    public ResponseEntity<?> createPost(final JwtAuthenticationToken token, @Valid @RequestBody final CreatePostRequestDto request) {
+        try {
+            this.postService.createPost(token, request);
+            return ResponseEntity.ok().build();
+        } catch (ApiException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e);
         }
     }
 }

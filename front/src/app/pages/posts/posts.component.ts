@@ -8,6 +8,7 @@ import {NgClass, NgIf} from '@angular/common';
 import {Router} from '@angular/router';
 import {PostService} from '../../core/services/post.service';
 import {Subscription} from 'rxjs';
+import {LoaderComponent} from '../../shared/components/loader/loader.component';
 
 @Component({
   selector: 'app-posts',
@@ -16,7 +17,8 @@ import {Subscription} from 'rxjs';
     ButtonComponent,
     FaIconComponent,
     NgClass,
-    NgIf
+    NgIf,
+    LoaderComponent
   ],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss'

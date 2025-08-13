@@ -1,4 +1,4 @@
-<main class="posts">
+<main *ngIf="posts; else loading" class="posts">
   <section class="posts__actions__header">
     <app-button (click)="handleOnCreatePost()" class="posts__actions__header__create" content="Créer un article"/>
     <div (click)="handleSortPosts()" class="posts__actions__header__sort">
@@ -13,5 +13,8 @@
     <p class="post__emptyList">Il n'y a aucun article à afficher.</p>
   </ng-template>
 </main>
+<ng-template #loading>
+  <app-loader/>
+</ng-template>
 
 

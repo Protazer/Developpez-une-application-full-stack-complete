@@ -1,0 +1,37 @@
+<form (ngSubmit)="handleSubmit()" [formGroup]="createPostForm" class="create-post-form">
+  <h2>Créer un nouvel article</h2>
+  <div class="create-post-form__group">
+    <select formControlName="topicId"
+            id="topicId" required>
+
+      <option *ngFor="let option of topicOptions" [disabled]="option.disabled"
+              [value]="option.value">{{ option.label }}
+      </option>
+    </select>
+    <div *ngIf="invalidField('topicId')" class="create-post-form__group__invalid">
+      <span *ngIf="createPostForm.controls['topicId'].hasError('required')">Theme requis.</span>
+    </div>
+  </div>
+  <div class="create-post-form__group">
+    <input formControlName="title" id="title" placeholder="Titre de l'article" type="text"/>
+    <div *ngIf="invalidField('title')" class="create-post-form__group__invalid">
+      <span *ngIf="createPostForm.controls['title'].hasError('required')">Le titre de l'article est requis.</span>
+      <span
+        *ngIf="createPostForm.controls['title'].hasError('maxlength')">Le titre dépasse le nombre de 55 caractères.</span>
+    </div>
+  </div>
+  <div class="create-post-form__group">
+    <textarea formControlName="content" id="content" maxlength="1000"
+              placeholder="Contenu de l'article" rows="7"></textarea>
+    <div *ngIf="invalidField('content')" class="create-post-form__group__invalid">
+      <span *ngIf="createPostForm.controls['content'].hasError('required')">Le contenu de l'article est requis.</span>
+      <span
+        *ngIf="createPostForm.controls['content'].hasError('maxlength')">Le contenu de l'article dépasse le nombre de 1000 caractères.</span>
+    </div>
+  </div>
+  <div *ngIf="formStatus.status" [ngClass]="formStatus.type === 'success' ? 'success' : 'error'"
+       class="create-post-form__message">
+    <span>{{ formStatus.message }}</span>
+  </div>
+  <app-button content="Créer" type="submit" variant="default"/>
+</form>

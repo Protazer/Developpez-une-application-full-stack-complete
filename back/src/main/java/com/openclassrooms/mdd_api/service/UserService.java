@@ -20,7 +20,7 @@ public class UserService implements IUserService {
     private final JWTService jwtService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    private UserService(final UserRepository userRepository, UserMapper userMapper, JWTService jwtService, BCryptPasswordEncoder bCryptPasswordEncoder) {
+    private UserService(final UserRepository userRepository, final UserMapper userMapper, final JWTService jwtService, final BCryptPasswordEncoder bCryptPasswordEncoder) {
         this.userRepository = userRepository;
         this.userMapper = userMapper;
         this.jwtService = jwtService;
@@ -80,12 +80,16 @@ public class UserService implements IUserService {
             if (!Objects.equals(foundUser.get().getEmail(), user.email()) && emailAlreadyExist != null) {
                 throw new ApiException("Cette Adresse email n'est pas disponible");
             }
+
             if (!Objects.equals(foundUser.get().getName(), user.username()) && nameAlreadyExist != null) {
                 throw new ApiException("Ce nom d'utilisateur n'est pas disponible");
             }
+
             User updatedUser = this.userMapper.toUpdatedUser(foundUser.get(), user);
+
             this.userRepository.save(updatedUser);
             return this.userMapper.toGetUserResponseDto(updatedUser);
+
         } else {
             throw new ApiException("Cet utilisateur n'existe pas");
         }
