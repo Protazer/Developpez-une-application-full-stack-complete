@@ -31,7 +31,7 @@ public class TopicService implements ITopicService {
     public List<GetTopicResponseDto> getAllTopics() {
         List<Topic> topics = topicRepository.findAll();
         topics.sort(Comparator.comparing(Topic::getTitle));
-        return topics.stream().map(this.topicMapper::toTopicDto).toList();
+        return topics.stream().map(this.topicMapper::toGetTopicResponseDto).toList();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class TopicService implements ITopicService {
             this.topicRepository.save(currentTopic);
             List<Topic> topicsList = user.get().getTopics();
             topicsList.sort(Comparator.comparing(Topic::getTitle));
-            return topicsList.stream().map(this.topicMapper::toTopicDto).toList();
+            return topicsList.stream().map(this.topicMapper::toGetTopicResponseDto).toList();
         } else {
             throw new ApiException("Erreur lors du désabonnement !");
         }
@@ -61,7 +61,7 @@ public class TopicService implements ITopicService {
             this.topicRepository.save(foundTopic.get());
             List<Topic> topicsList = user.get().getTopics();
             topicsList.sort(Comparator.comparing(Topic::getTitle));
-            return topicsList.stream().map(this.topicMapper::toTopicDto).toList();
+            return topicsList.stream().map(this.topicMapper::toGetTopicResponseDto).toList();
         } else {
             throw new ApiException("Erreur lors de l'abonnement !");
         }

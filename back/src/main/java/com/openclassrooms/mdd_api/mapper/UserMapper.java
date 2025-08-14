@@ -1,6 +1,6 @@
 package com.openclassrooms.mdd_api.mapper;
 
-import com.openclassrooms.mdd_api.dto.topic.GetTopicResponseDto;
+import com.openclassrooms.mdd_api.dto.topic.TopicDto;
 import com.openclassrooms.mdd_api.dto.user.GetUserResponseDto;
 import com.openclassrooms.mdd_api.dto.user.UserDto;
 import com.openclassrooms.mdd_api.dto.user.UserRegisterRequestDto;
@@ -24,12 +24,12 @@ public class UserMapper {
     }
 
     public UserDto toUserDto(final User user) {
-        List<GetTopicResponseDto> topicsList = user.getTopics().stream().map(this.topicMapper::toTopicDto).toList();
+        List<TopicDto> topicsList = user.getTopics().stream().map(this.topicMapper::toTopicDto).toList();
         return new UserDto(user.getId(), user.getName(), user.getEmail(), topicsList, user.getCreatedAt(), user.getUpdatedAt());
     }
 
     public GetUserResponseDto toGetUserResponseDto(final User user) {
-        List<GetTopicResponseDto> topicsList = user.getTopics().stream().map(this.topicMapper::toTopicDto).toList();
+        List<TopicDto> topicsList = user.getTopics().stream().map(this.topicMapper::toTopicDto).toList();
         return new GetUserResponseDto(user.getId(), user.getName(), user.getEmail(), topicsList, user.getCreatedAt(), user.getUpdatedAt());
     }
 

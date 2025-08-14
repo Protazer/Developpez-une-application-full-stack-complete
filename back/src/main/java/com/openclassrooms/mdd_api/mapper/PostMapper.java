@@ -15,15 +15,17 @@ import java.util.List;
 public class PostMapper {
     private final CommentMapper commentMapper;
     private final UserMapper userMapper;
+    private final TopicMapper topicMapper;
 
-    PostMapper(final CommentMapper commentMapper, final UserMapper userMapper) {
+    PostMapper(final CommentMapper commentMapper, final UserMapper userMapper, final TopicMapper topicMapper) {
         this.commentMapper = commentMapper;
         this.userMapper = userMapper;
+        this.topicMapper = topicMapper;
     }
 
     public GetPostResponseDto toGetPostResponseDto(Post post) {
         List<CommentDto> postComments = post.getComments().stream().map(this.commentMapper::toDto).toList();
-        return new GetPostResponseDto(post.getPostId(), post.getTitle(), post.getContent(), this.userMapper.toUserDto(post.getAuthor()), postComments, post.getCreatedAt(), post.getUpdatedAt());
+        return new GetPostResponseDto(post.getPostId(), post.getTitle(), post.getContent(), this.userMapper.toUserDto(post.getAuthor()), postComments, this.topicMapper.toTopicDto(post.getTopic()), post.getCreatedAt(), post.getUpdatedAt());
     }
 
     public Post toEntity(CreatePostRequestDto post, User user, Topic topic) {
