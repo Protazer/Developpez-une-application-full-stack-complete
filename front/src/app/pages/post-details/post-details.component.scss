@@ -1,0 +1,46 @@
+.post-details {
+  padding: 1rem;
+
+  &__post__header {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    margin-bottom: 2rem;
+
+    &__arrow {
+      font-size: 30px;
+      margin-right: 1rem;
+    }
+  }
+
+  &__infos {
+    margin-left: 44px;
+
+    &__creation {
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: center;
+      margin-bottom: 2rem;
+
+      & p {
+        margin-right: 10%;
+      }
+    }
+
+    &__content {
+      &__value {
+        display: inline-block;
+      }
+    }
+  }
+
+  &__separator {
+    margin: 2rem 0 2rem 44px;
+  }
+
+  &__comments__title {
+    font-weight: 300;
+    margin-left: 44px;
+    font-size: 1.2rem;
+  }
+}
