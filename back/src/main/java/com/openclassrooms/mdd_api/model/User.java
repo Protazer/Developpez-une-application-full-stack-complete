@@ -16,38 +16,38 @@ import java.util.List;
 @Table(name = "user")
 public class User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_id")
-	private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private int id;
 
-	@NotNull
-	@Size(max = 55)
-	private String name;
+    @NotNull
+    @Size(max = 255)
+    private String name;
 
-	@NotNull
-	@Size(max = 55)
-	private String email;
+    @NotNull
+    @Size(max = 255)
+    private String email;
 
-	@NotNull
-	@Size(max = 255)
-	private String password;
+    @NotNull
+    @Size(max = 255)
+    private String password;
 
-	@ManyToMany(fetch = FetchType.EAGER)
-	@JoinTable(
-			name = "user_topic",
-			joinColumns = @JoinColumn(name = "user_id"),
-			inverseJoinColumns = @JoinColumn(name = "topic_id")
-	)
-	private List<Topic> topics = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_topic",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "topic_id")
+    )
+    private List<Topic> topics = new ArrayList<>();
 
-	@CreationTimestamp
-	@Column(name = "created_at")
-	private LocalDate createdAt;
+    @CreationTimestamp
+    @Column(name = "created_at")
+    private LocalDate createdAt;
 
-	@UpdateTimestamp
-	@Column(name = "updated_at")
-	private LocalDate updatedAt;
+    @UpdateTimestamp
+    @Column(name = "updated_at")
+    private LocalDate updatedAt;
 
 }
 

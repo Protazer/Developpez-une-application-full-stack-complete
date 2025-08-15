@@ -7,7 +7,7 @@ import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,16 +21,16 @@ public class Post {
     private int postId;
 
     @NotNull
-    @Size(max = 55)
+    @Size(max = 255)
     private String title;
 
     @NotNull
-    @Size(max = 255)
+    @Size(max = 2000)
     private String content;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
-    private User author;
+    private User user;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @JoinColumn(name = "post_id")
@@ -41,8 +41,12 @@ public class Post {
     private Topic topic;
 
     @CreationTimestamp
-    private Date createdAt;
+    private LocalDate createdAt;
 
     @UpdateTimestamp
-    private Date updatedAt;
+    private LocalDate updatedAt;
+
+    public void addComment(Comment comment) {
+        comments.add(comment);
+    }
 }

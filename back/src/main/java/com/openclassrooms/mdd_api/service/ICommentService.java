@@ -1,11 +1,11 @@
 package com.openclassrooms.mdd_api.service;
 
-import com.openclassrooms.mdd_api.dto.comment.GetCommentResponseDto;
+import com.openclassrooms.mdd_api.dto.comment.CommentDto;
+import com.openclassrooms.mdd_api.dto.comment.CreateCommentRequest;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 
 import java.util.List;
 
 public interface ICommentService {
-    List<GetCommentResponseDto> getAllComments();
-
-    GetCommentResponseDto getCommentById(int id);
+    List<CommentDto> addPostComment(final JwtAuthenticationToken token, final CreateCommentRequest comment);
 }
