@@ -4,10 +4,10 @@ import com.openclassrooms.mdd_api.dto.comment.CommentDto;
 import com.openclassrooms.mdd_api.dto.topic.TopicDto;
 import com.openclassrooms.mdd_api.dto.user.UserDto;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 public record GetPostResponseDto(int id, String title, String content, UserDto author, List<CommentDto> comments,
                                  TopicDto topic,
-                                 Date created_at, Date updated_at) {
+                                 LocalDate created_at, LocalDate updated_at) {
 }

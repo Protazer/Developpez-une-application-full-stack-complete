@@ -12,4 +12,6 @@ public interface IPostService {
     GetPostResponseDto getPostById(int id);
 
     void createPost(JwtAuthenticationToken token, CreatePostRequestDto post);
+
+    
 }

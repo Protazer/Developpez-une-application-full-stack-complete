@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {ICommentRequest} from '../../interfaces/comment.interface';
-import {IPost} from '../../interfaces/post.interface';
+import {IComment, ICommentRequest} from '../../interfaces/comment.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +13,6 @@ export class CommentService {
   }
 
   public addComment(comment: ICommentRequest) {
-    return this.http.post<IPost>(this.commentPath, comment);
+    return this.http.post<IComment[]>(this.commentPath, comment);
   }
 }

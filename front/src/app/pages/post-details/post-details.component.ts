@@ -41,7 +41,7 @@ export class PostDetailsComponent implements OnInit {
     this.commentService.addComment({
       postId: this.postId,
       content: comment.content
-    }).subscribe(({next: post => this.post = post}))
+    }).subscribe(({next: comments => this.post.comments = comments}))
   }
 
   handleNavigateToPost() {

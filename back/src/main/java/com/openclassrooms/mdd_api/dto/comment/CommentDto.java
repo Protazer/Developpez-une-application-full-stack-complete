@@ -2,7 +2,7 @@ package com.openclassrooms.mdd_api.dto.comment;
 
 import com.openclassrooms.mdd_api.dto.user.UserDto;
 
-import java.util.Date;
+import java.time.LocalDate;
 
-public record CommentDto(int id, String content, UserDto user, Date created_at, Date updated_at) {
+public record CommentDto(int id, String content, UserDto user, LocalDate created_at, LocalDate updated_at) {
 }
