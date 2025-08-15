@@ -8,9 +8,9 @@
       />
     </div>
   </section>
-  <app-post-list *ngIf="posts.length > 0; else emptyList " [posts]="posts" class="posts__list"></app-post-list>
+  <app-posts-list *ngIf="posts.length > 0; else emptyList " [posts]="posts" class="posts__list"></app-posts-list>
   <ng-template #emptyList>
-    <p class="post__emptyList">Il n'y a aucun article à afficher.</p>
+    <p class="posts__emptyList">Il n'y a aucun article à afficher.</p>
   </ng-template>
 </main>
 <ng-template #loading>

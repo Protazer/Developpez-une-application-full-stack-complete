@@ -1,0 +1,14 @@
+@use 'variables';
+
+.comment {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 95%;
+  padding: 1rem 0;
+
+  &__container {
+    display: flex;
+    margin: 1rem 0;
+    width: 100%;
+  }
+}

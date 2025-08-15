@@ -1,0 +1,47 @@
+@use 'variables';
+
+.comment-form {
+  &__group {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    width: 100%;
+
+    &__invalid {
+      display: flex;
+      flex-flow: column nowrap;
+      align-items: center;
+      justify-content: center;
+      margin: 0.5rem 0;
+      width: 100%;
+
+      & span {
+        text-align: center;
+        color: variables.$color-primary;
+        font-weight: 700;
+      }
+    }
+
+    &__content {
+      resize: none;
+      border: 1px solid variables.$color-tertiary;
+      border-radius: 8px;
+      margin-right: 1rem;
+      padding: 1rem;
+      width: calc(100% - 56px);
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    &__icon {
+      font-size: 40px;
+      color: variables.$color-primary;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

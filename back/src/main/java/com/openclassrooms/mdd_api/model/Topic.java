@@ -18,10 +18,10 @@ public class Topic {
     private int topicId;
 
     @NotNull
-    @Size(max = 55)
+    @Size(max = 255)
     private String title;
 
-    @Size(max = 1000)
+    @Size(max = 2000)
     private String content;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "topics")

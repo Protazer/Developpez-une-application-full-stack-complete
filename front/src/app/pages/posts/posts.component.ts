@@ -1,5 +1,4 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {PostListComponent} from '../../shared/components/post-list/post-list.component';
 import {ButtonComponent} from '../../shared/components/button/button.component';
 import {IPost} from '../../interfaces/post.interface';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
@@ -9,16 +8,17 @@ import {Router} from '@angular/router';
 import {PostService} from '../../core/services/post.service';
 import {Subscription} from 'rxjs';
 import {LoaderComponent} from '../../shared/components/loader/loader.component';
+import {PostsListComponent} from '../../shared/components/posts-list/posts-list.component';
 
 @Component({
   selector: 'app-posts',
   imports: [
-    PostListComponent,
     ButtonComponent,
     FaIconComponent,
     NgClass,
     NgIf,
-    LoaderComponent
+    LoaderComponent,
+    PostsListComponent
   ],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss'

@@ -17,16 +17,14 @@
     <div *ngIf="invalidField('title')" class="create-post-form__group__invalid">
       <span *ngIf="createPostForm.controls['title'].hasError('required')">Le titre de l'article est requis.</span>
       <span
-        *ngIf="createPostForm.controls['title'].hasError('maxlength')">Le titre dépasse le nombre de 55 caractères.</span>
+        *ngIf="createPostForm.controls['title'].hasError('maxlength')">Le titre dépasse le nombre de 255 caractères.</span>
     </div>
   </div>
   <div class="create-post-form__group">
-    <textarea formControlName="content" id="content" maxlength="1000"
+    <textarea formControlName="content" id="content" maxlength="2000"
               placeholder="Contenu de l'article" rows="7"></textarea>
     <div *ngIf="invalidField('content')" class="create-post-form__group__invalid">
       <span *ngIf="createPostForm.controls['content'].hasError('required')">Le contenu de l'article est requis.</span>
-      <span
-        *ngIf="createPostForm.controls['content'].hasError('maxlength')">Le contenu de l'article dépasse le nombre de 1000 caractères.</span>
     </div>
   </div>
   <div *ngIf="formStatus.status" [ngClass]="formStatus.type === 'success' ? 'success' : 'error'"

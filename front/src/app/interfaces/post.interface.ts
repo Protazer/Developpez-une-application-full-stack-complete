@@ -1,4 +1,6 @@
 import {IUser} from './user.interface';
+import {ITopic} from './topic.interface';
+import {IComment} from './comment.interface';
 
 export interface IPost {
   id: string;
@@ -6,6 +8,8 @@ export interface IPost {
   content: string;
   created_at: string;
   author: IUser;
+  topic: ITopic;
+  comments: IComment[];
 }
 
 export interface ICreatePostRequest {
