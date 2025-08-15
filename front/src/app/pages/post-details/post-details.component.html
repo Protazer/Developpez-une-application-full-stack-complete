@@ -1,11 +1,11 @@
 <main *ngIf="post; else loading" class="post-details">
   <section class="post-details__post__header">
-    <fa-icon [icon]="faArrowLeft" class="post-details__post__header__arrow"></fa-icon>
+    <fa-icon (click)="handleNavigateToPost()" [icon]="faArrowLeft" class="post-details__post__header__arrow"></fa-icon>
     <h2 class="post-details__post__header__title"> {{ post.title }}</h2>
   </section>
   <section class="post-details__infos">
     <div class="post-details__infos__creation">
-      <p class="post-details__infos__creation__date">{{ post.created_at }}</p>
+      <p class="post-details__infos__creation__date">{{ post.created_at | date:'dd/MM/yyyy' }}</p>
       <p class="post-details__infos__creation__author">{{ post.author.name }}</p>
       <p class="post-details__infos__creation__topic">{{ post.topic.title }}</p>
     </div>
@@ -19,6 +19,11 @@
 
   <section class="post-details__comments">
     <h2 class="post-details__comments__title">Commentaires</h2>
+    <div class="post-details__comments__wrapper">
+      <app-comments-list [comments]="post.comments" class="post-details__comments__wrapper__commentList"/>
+      <app-comment-form (submitComment)="handlePostComment($event)"
+                        class="post-details__comments__wrapper__commentForm"/>
+    </div>
   </section>
 </main>
 <ng-template #loading>

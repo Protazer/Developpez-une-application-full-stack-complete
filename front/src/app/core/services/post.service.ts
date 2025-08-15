@@ -8,20 +8,20 @@ import {Observable} from "rxjs";
 })
 export class PostService {
 
-    topicApiPath = '/api/posts';
+    postApiPath = '/api/posts';
 
     constructor(private http: HttpClient) {
     }
 
     public getAllPosts() {
-        return this.http.get<IPost[]>(this.topicApiPath);
+        return this.http.get<IPost[]>(this.postApiPath);
     }
 
     public getPost(id: number): Observable<IPost> {
-        return this.http.get<IPost>(`${this.topicApiPath}/${id}`);
+        return this.http.get<IPost>(`${this.postApiPath}/${id}`);
     }
 
     public createPost(post: ICreatePostRequest) {
-        return this.http.post(this.topicApiPath, post);
+        return this.http.post(this.postApiPath, post);
     }
 }

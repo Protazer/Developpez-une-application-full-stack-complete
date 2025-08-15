@@ -10,6 +10,10 @@
     &__arrow {
       font-size: 30px;
       margin-right: 1rem;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
   }
 
@@ -42,5 +46,17 @@
     font-weight: 300;
     margin-left: 44px;
     font-size: 1.2rem;
+  }
+
+  &__comments__wrapper {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin-left: 44px;
+    padding: 0 4%;
+
+    &__commentList, &__commentForm {
+      width: 100%;
+    }
   }
 }

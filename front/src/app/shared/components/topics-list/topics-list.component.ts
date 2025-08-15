@@ -7,15 +7,15 @@ import {TopicService} from '../../../core/services/topic.service';
 import {SessionService} from '../../../core/services/session.service';
 
 @Component({
-  selector: 'app-topic-list',
+  selector: 'app-topics-list',
   imports: [
     NgForOf,
     TopicComponent
   ],
-  templateUrl: './topic-list.component.html',
-  styleUrl: './topic-list.component.scss'
+  templateUrl: './topics-list.component.html',
+  styleUrl: './topics-list.component.scss'
 })
-export class TopicListComponent {
+export class TopicsListComponent {
   @Input() user!: IUser;
   @Input() topics!: ITopic[];
 

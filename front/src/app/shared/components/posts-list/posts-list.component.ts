@@ -5,15 +5,15 @@ import {IPost} from '../../../interfaces/post.interface';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-post-list',
+  selector: 'app-posts-list',
   imports: [
     PostComponent,
     NgForOf
   ],
-  templateUrl: './post-list.component.html',
-  styleUrl: './post-list.component.scss'
+  templateUrl: './posts-list.component.html',
+  styleUrl: './posts-list.component.scss'
 })
-export class PostListComponent {
+export class PostsListComponent {
   @Input() posts!: IPost[];
 
   constructor(private router: Router) {

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {TopicListComponent} from '../../shared/components/topic-list/topic-list.component';
+
 import {ITopic} from '../../interfaces/topic.interface';
 import {TopicService} from '../../core/services/topic.service';
 import {Observable} from 'rxjs';
@@ -7,14 +7,16 @@ import {IUser} from '../../interfaces/user.interface';
 import {SessionService} from '../../core/services/session.service';
 import {AsyncPipe, NgIf} from '@angular/common';
 import {LoaderComponent} from '../../shared/components/loader/loader.component';
+import {TopicsListComponent} from '../../shared/components/topics-list/topics-list.component';
 
 @Component({
   selector: 'app-topics',
   imports: [
-    TopicListComponent,
+    TopicsListComponent,
     AsyncPipe,
     NgIf,
-    LoaderComponent
+    LoaderComponent,
+    TopicsListComponent
   ],
   templateUrl: './topics.component.html',
   styleUrl: './topics.component.scss'

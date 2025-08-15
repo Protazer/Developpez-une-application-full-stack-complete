@@ -1,0 +1,15 @@
+<form (ngSubmit)="handleSubmit()" [formGroup]="commentForm" class="comment-form">
+  <div class="comment-form__group">
+   <textarea [maxLength]="2000" class="comment-form__group__content" formControlName="content" id="content"
+             maxlength="1000" placeholder="Ecrivez ici votre commentaire" rows="4"></textarea>
+    <fa-icon (click)="handleSubmit()" [icon]="faPaperPlane" class="comment-form__group__icon"/>
+    <div *ngIf="invalidField('content')" class="comment-form__group__invalid">
+      <span *ngIf="commentForm.controls['content'].hasError('required')">Un commentaire est requis.</span>
+    </div>
+
+  </div>
+  <div *ngIf="formError.status">
+    class="comment-form__message">
+    <span>{{ formError.message }}</span>
+  </div>
+</form>
