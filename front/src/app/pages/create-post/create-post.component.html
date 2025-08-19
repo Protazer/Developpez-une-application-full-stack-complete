@@ -1,8 +1,8 @@
-<main class="create-post">
-    <section class="create-post__baseline">
-        <fa-icon (click)="handleNavigateToPost()" [icon]="faArrowLeft" class="create-post__baseline__arrow"/>
-    </section>
-    <section class="create-post__form">
-        <app-create-post-form/>
-    </section>
+<main [ngClass]="{'responsive': isResponsiveStyle$ | async}" class="create-post">
+  <section class="create-post__baseline">
+    <fa-icon (click)="handleNavigateToPost()" [icon]="faArrowLeft" class="create-post__baseline__arrow"/>
+  </section>
+  <section [ngClass]="{'responsive': isResponsiveStyle$ | async}" class="create-post__form">
+    <app-create-post-form/>
+  </section>
 </main>

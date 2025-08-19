@@ -4,7 +4,7 @@
     {{ topic.content | truncate:[150] }}
   </p>
   <div class="topic__action">
-    <app-button (click)="handleOnSubscribe()" [content]="getTopicAction()"
+    <app-button (click)="handleOnSubscribe()" [content]="topicActionLabel"
                 [disabled]="subscribedToUser && !canUnsubscribe"
                 variant="default"/>
   </div>

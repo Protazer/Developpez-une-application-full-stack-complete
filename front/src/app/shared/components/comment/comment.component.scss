@@ -5,8 +5,18 @@
   flex-flow: row nowrap;
   justify-content: space-between;
 
+  &.responsive {
+    flex-flow: column nowrap;
+    align-items: flex-end;
+  }
+
   &__user {
     margin-right: 2rem;
+
+    &.responsive {
+      margin-right: 0;
+      margin-bottom: 1rem;
+    }
   }
 
   &__content {
@@ -16,5 +26,9 @@
     min-height: 100px;
     border-radius: 8px;
     background-color: variables.$color-secondary;
+
+    &.responsive {
+      width: 100%;
+    }
   }
 }

@@ -1,8 +1,9 @@
 <main class="login">
   <section class="login__baseline">
-    <fa-icon (click)="handleNavigateToHome()" [icon]="faArrowLeft" class="login__baseline__arrow"/>
+    <fa-icon (click)="handleNavigateToHome()" [icon]="arrowLeft" class="login__baseline__arrow"/>
   </section>
   <section class="login__form">
+    <img *ngIf="isResponsiveStyle$ | async" alt="mdd-app-logo" class="login__form__image" src="logo_p6.png"/>
     <app-login-form/>
   </section>
 </main>

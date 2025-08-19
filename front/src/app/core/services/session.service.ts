@@ -23,7 +23,7 @@ export class SessionService {
   }
 
   public logOut(): void {
-    localStorage.removeItem('token');
+    localStorage.removeItem('mdd-token');
     this.userSubject.next(undefined);
     this.isLoggedSubject.next(false);
   }

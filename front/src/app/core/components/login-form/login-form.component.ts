@@ -49,7 +49,7 @@ export class LoginFormComponent implements OnInit {
         {
           next: (response: IAuthSuccess) => {
             this.formError = {status: false, message: ''};
-            localStorage.setItem('token', response.token);
+            localStorage.setItem('mdd-token', response.token);
             this.authService.me().subscribe({
               next: (user: IUser) => {
                 this.sessionService.logIn(user);

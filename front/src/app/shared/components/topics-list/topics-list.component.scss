@@ -1,6 +1,5 @@
 @use 'variables';
 
-
 .topic {
   display: flex;
   flex-flow: column nowrap;
@@ -11,8 +10,7 @@
 
   &__container {
     display: flex;
-    flex: 40%;
-    margin: 1rem 2rem;
+    flex: 48%;
     width: 100%;
   }
 }

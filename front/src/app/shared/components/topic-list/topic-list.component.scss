@@ -1,9 +1,8 @@
 @use 'variables';
 
-
 .topic {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
   background-color: variables.$color-secondary;
   width: 100%;
   padding: 1rem;
@@ -11,8 +10,7 @@
 
   &__container {
     display: flex;
-    flex: 40%;
-    margin: 1rem 2rem;
+    flex: 48%;
     width: 100%;
   }
 }

@@ -1,6 +1,7 @@
 <main *ngIf="posts; else loading" class="posts">
-  <section class="posts__actions__header">
-    <app-button (click)="handleOnCreatePost()" class="posts__actions__header__create" content="Créer un article"/>
+  <section [ngClass]="{'responsive': isResponsiveStyle$ | async}" class="posts__actions__header">
+    <app-button (click)="handleOnCreatePost()" [ngClass]="{'responsive': isResponsiveStyle$ | async}"
+                class="posts__actions__header__create" content="Créer un article"/>
     <div (click)="handleSortPosts()" class="posts__actions__header__sort">
       <span class="posts__actions__header__sort__label">Trier par</span>
       <fa-icon [icon]="faArrowDown"

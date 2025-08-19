@@ -3,12 +3,13 @@ import {ButtonComponent} from '../../shared/components/button/button.component';
 import {IPost} from '../../interfaces/post.interface';
 import {FaIconComponent} from '@fortawesome/angular-fontawesome';
 import {faArrowDown} from '@fortawesome/free-solid-svg-icons';
-import {NgClass, NgIf} from '@angular/common';
+import {AsyncPipe, NgClass, NgIf} from '@angular/common';
 import {Router} from '@angular/router';
 import {PostService} from '../../core/services/post.service';
-import {Subscription} from 'rxjs';
+import {map, Observable, Subscription} from 'rxjs';
 import {LoaderComponent} from '../../shared/components/loader/loader.component';
 import {PostsListComponent} from '../../shared/components/posts-list/posts-list.component';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-posts',
@@ -18,7 +19,8 @@ import {PostsListComponent} from '../../shared/components/posts-list/posts-list.
     NgClass,
     NgIf,
     LoaderComponent,
-    PostsListComponent
+    PostsListComponent,
+    AsyncPipe
   ],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss'
@@ -29,10 +31,11 @@ export class PostsComponent implements OnInit, OnDestroy {
   public sortType: "asc" | "dsc" = 'asc';
 
   public posts!: IPost[];
-  protected faArrowDown = faArrowDown;
+  public faArrowDown = faArrowDown;
+  public isResponsiveStyle$!: Observable<boolean>;
   private postsSubscription!: Subscription;
 
-  constructor(private router: Router, private postService: PostService) {
+  constructor(private router: Router, private postService: PostService, private breakpointObserver: BreakpointObserver) {
   }
 
   ngOnInit(): void {
@@ -41,6 +44,12 @@ export class PostsComponent implements OnInit, OnDestroy {
         this.posts = response.sort((a, b) => a.created_at.localeCompare(b.created_at));
       }
     }))
+
+    this.isResponsiveStyle$ = this.breakpointObserver
+      .observe([Breakpoints.Tablet, Breakpoints.Small, Breakpoints.XSmall])
+      .pipe(
+        map(result => result.matches)
+      );
   }
 
   handleSortPosts(): void {

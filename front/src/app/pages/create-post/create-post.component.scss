@@ -1,14 +1,34 @@
 .create-post {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
   height: calc(100vh - 90px);
   width: 100vw;
 
+  &.responsive {
+    flex-flow: column nowrap;
+    margin: 0 auto;
+  }
+
+  &__form {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+    margin-left: -3rem;
+    width: 100%;
+    z-index: 0;
+
+    &.responsive {
+      margin-left: 0;
+    }
+  }
+
   &__baseline {
-    padding: 1rem 0 0 2rem;
+    padding: 1rem 0 0 4%;
+    z-index: 1;
 
     &__arrow {
       font-size: 40px;
+
 
       &:hover {
         cursor: pointer;

@@ -3,7 +3,9 @@
     <img alt="mdd-app-logo" class="home__baseline__image" src="logo_p6.png"/>
   </section>
   <section class="home__links">
-    <app-button (click)="handleNavigateTo('/login')" content="Se connecter" variant="primary"/>
-    <app-button (click)="handleNavigateTo('/register')" content="S'inscrire" variant="primary"/>
+    <app-button (click)="handleNavigateTo('/login')" class="home__links__login" content="Se connecter"
+                variant="primary"/>
+    <app-button (click)="handleNavigateTo('/register')" class="home__links__register" content="S'inscrire"
+                variant="primary"/>
   </section>
 </main>
