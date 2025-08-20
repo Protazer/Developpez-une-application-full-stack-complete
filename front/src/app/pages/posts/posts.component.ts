@@ -31,7 +31,7 @@ import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 export class PostsComponent implements OnInit, OnDestroy {
 
   /** Sort order for posts: ascending ('asc') or descending ('dsc') */
-  public sortType: "asc" | "dsc" = 'asc';
+  public sortType: "asc" | "dsc" = 'dsc';
 
   /** Array of posts to display */
   public posts!: IPost[];
@@ -64,7 +64,7 @@ export class PostsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.postsSubscription = this.postService.getAllPosts().subscribe({
       next: (response: IPost[]) => {
-        this.posts = response.sort((a, b) => a.created_at.localeCompare(b.created_at));
+        this.posts = response.sort((a, b) => b.created_at.localeCompare(a.created_at));
       }
     });
 

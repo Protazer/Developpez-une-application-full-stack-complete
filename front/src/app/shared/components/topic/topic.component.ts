@@ -13,7 +13,7 @@ import {TruncatePipe} from '../../pipes/truncate.pipe';
   templateUrl: './topic.component.html',
   styleUrl: './topic.component.scss'
 })
-export class TopicComponent implements OnInit, OnChanges {
+export class TopicComponent implements OnChanges {
 
   /** Topic data input, required */
   @Input({required: true}) topic!: ITopic;
@@ -36,14 +36,12 @@ export class TopicComponent implements OnInit, OnChanges {
   constructor(private router: Router) {
   }
 
-  /** Initialize unsubscribe flag based on current route and subscription */
-  ngOnInit() {
-    this.canUnsubscribe = this.router.url.includes('/profile') && this.subscribedToUser;
-  }
+
 
   /** Update the topic action label when inputs change */
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['canUnsubscribe'] || changes['subscribedToUser']) {
+      this.canUnsubscribe = this.router.url.includes('/profile') && this.subscribedToUser;
       this.topicActionLabel = this.getTopicActionLabel();
     }
   }

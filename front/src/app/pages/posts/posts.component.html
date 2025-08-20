@@ -5,7 +5,7 @@
     <div (click)="handleSortPosts()" class="posts__actions__header__sort">
       <span class="posts__actions__header__sort__label">Trier par</span>
       <fa-icon [icon]="faArrowDown"
-               [ngClass]="sortType === 'asc' ? 'posts__actions__header__sort__icon--down' : 'posts__actions__header__sort__icon--up'"
+               [ngClass]="sortType === 'dsc' ? 'posts__actions__header__sort__icon--down' : 'posts__actions__header__sort__icon--up'"
       />
     </div>
   </section>
