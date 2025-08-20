@@ -15,39 +15,51 @@ import {TruncatePipe} from '../../pipes/truncate.pipe';
 })
 export class TopicComponent implements OnInit, OnChanges {
 
-  @Input({required: true}) topic!: ITopic
-  @Input() subscribedToUser: boolean = false;
-  @Input() subscribedTopic!: (id: number) => void;
+  /** Topic data input, required */
+  @Input({required: true}) topic!: ITopic;
+
+  /** Indicates if the user is subscribed to this topic */
+  @Input({required: true}) subscribedToUser: boolean = false;
+
+  /** Event emitted when unsubscribing */
   @Output() unsubscribeTopic = new EventEmitter<number>();
+
+  /** Event emitted when subscribing */
   @Output() subscribeTopic = new EventEmitter<number>();
 
+  /** Label for the topic action button */
   topicActionLabel!: "Se Désabonner" | "S'abonner" | "Déja abonné !";
 
+  /** Flag indicating if unsubscribe action is allowed */
   canUnsubscribe: boolean = false;
 
   constructor(private router: Router) {
   }
 
+  /** Initialize unsubscribe flag based on current route and subscription */
   ngOnInit() {
     this.canUnsubscribe = this.router.url.includes('/profile') && this.subscribedToUser;
   }
 
+  /** Update the topic action label when inputs change */
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['canUnsubscribe'] || changes['subscribedToUser']) {
       this.topicActionLabel = this.getTopicActionLabel();
     }
   }
 
+  /** Returns the appropriate label for the subscribe/unsubscribe button */
   getTopicActionLabel() {
     if (this.canUnsubscribe && this.subscribedToUser) {
       return "Se Désabonner";
     } else if (!this.canUnsubscribe && !this.subscribedToUser) {
-      return "S'abonner"
+      return "S'abonner";
     } else {
-      return "Déja abonné !"
+      return "Déja abonné !";
     }
   }
 
+  /** Handles subscribe or unsubscribe button click */
   handleOnSubscribe() {
     if (this.subscribedToUser && this.canUnsubscribe) {
       this.unsubscribeTopic.emit(Number(this.topic.id));

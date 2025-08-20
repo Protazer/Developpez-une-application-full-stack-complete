@@ -19,12 +19,24 @@ import {map, Observable} from 'rxjs';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent implements OnInit {
+
+  /** Icon for back navigation */
   public faArrowLeft = faArrowLeft;
+
+  /** Observable indicating if responsive styles should be applied */
   public isResponsiveStyle$!: Observable<boolean>;
 
-  constructor(private router: Router, private breakpointObserver: BreakpointObserver,) {
+  /**
+   * Creates an instance of RegisterComponent.
+   * @param router Angular Router for navigation
+   * @param breakpointObserver Service to detect screen size breakpoints
+   */
+  constructor(private router: Router, private breakpointObserver: BreakpointObserver) {
   }
 
+  /**
+   * Sets up the observable to track if current screen matches mobile/tablet breakpoints.
+   */
   ngOnInit() {
     this.isResponsiveStyle$ = this.breakpointObserver
       .observe([Breakpoints.Tablet, Breakpoints.Small, Breakpoints.XSmall])
@@ -33,6 +45,7 @@ export class RegisterComponent implements OnInit {
       );
   }
 
+  /** Navigates back to the home page */
   handleNavigateToHome() {
     this.router.navigateByUrl('/');
   }

@@ -14,13 +14,14 @@ import {Router} from '@angular/router';
   styleUrl: './posts-list.component.scss'
 })
 export class PostsListComponent {
-  @Input() posts!: IPost[];
+  /** Posts array received from the parent component */
+  @Input({required: true}) posts!: IPost[];
 
   constructor(private router: Router) {
   }
 
+  /** Navigate to the detailed view of the selected post */
   handleOnClick(postId: string) {
     this.router.navigateByUrl(`posts/${postId}`);
   }
-
 }

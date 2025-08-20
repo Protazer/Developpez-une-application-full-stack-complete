@@ -1,8 +1,8 @@
 <main class="home">
   <section class="home__baseline">
-    <img alt="mdd-app-logo" class="home__baseline__image" src="logo_p6.png"/>
+    <img alt="mdd-app-logo" class="home__baseline__image" src="images/logo_p6.png"/>
   </section>
-  <section class="home__links">
+  <section [ngClass]="{'responsive':isResponsiveStyle$ | async}" class="home__links">
     <app-button (click)="handleNavigateTo('/login')" class="home__links__login" content="Se connecter"
                 variant="primary"/>
     <app-button (click)="handleNavigateTo('/register')" class="home__links__register" content="S'inscrire"

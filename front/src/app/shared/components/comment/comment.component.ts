@@ -14,7 +14,16 @@ import {AsyncPipe, NgClass} from '@angular/common';
   styleUrl: './comment.component.scss'
 })
 export class CommentComponent implements OnInit {
+  /**
+   * Comment data to display.
+   * This input is required.
+   */
   @Input({required: true}) comment!: IComment;
+
+  /**
+   * Observable that emits true if the viewport matches tablet or smaller screen sizes.
+   * Used to adapt the component's style responsively.
+   */
   public isResponsiveStyle$!: Observable<boolean>;
 
   constructor(private breakpointObserver: BreakpointObserver) {

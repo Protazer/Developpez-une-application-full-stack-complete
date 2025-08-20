@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-
 import {ITopic} from '../../interfaces/topic.interface';
 import {TopicService} from '../../core/services/topic.service';
 import {Observable} from 'rxjs';
@@ -22,12 +21,24 @@ import {TopicsListComponent} from '../../shared/components/topics-list/topics-li
   styleUrl: './topics.component.scss'
 })
 export class TopicsComponent implements OnInit {
+
+  /** Observable of the current logged user, or undefined if none */
   public user$!: Observable<IUser | undefined>;
+
+  /** List of available topics */
   public topics!: ITopic[];
 
+  /**
+   * Creates an instance of TopicsComponent.
+   * @param topicService Service for fetching topics
+   * @param sessionService Service managing user session
+   */
   constructor(private topicService: TopicService, private sessionService: SessionService) {
   }
 
+  /**
+   * Initializes component data by subscribing to user session and fetching topics.
+   */
   ngOnInit() {
     this.user$ = this.sessionService.user$;
     this.topicService.getAllTopics().subscribe({

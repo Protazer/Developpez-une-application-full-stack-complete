@@ -16,23 +16,26 @@ import {SessionService} from '../../../core/services/session.service';
   styleUrl: './topics-list.component.scss'
 })
 export class TopicsListComponent {
-  @Input() user!: IUser;
-  @Input() topics!: ITopic[];
+  /** Current logged-in user */
+  @Input({required: true}) user!: IUser;
 
+  /** Array of topics to display */
+  @Input({required: true}) topics!: ITopic[];
 
   constructor(private topicService: TopicService, private sessionService: SessionService) {
   }
 
-
+  /** Subscribes the user to a topic and updates the session user */
   public subscribeTopic(topicId: number): void {
-    this.topicService.subscribeTopic(topicId).subscribe(({
+    this.topicService.subscribeTopic(topicId).subscribe({
       next: (response) => {
         const updatedUser: IUser = {...this.user, topics: response};
         this.sessionService.updateUser(updatedUser);
       },
-    }))
+    });
   }
 
+  /** Unsubscribes the user from a topic and updates the session user */
   public unsubscribeTopic(topicId: number): void {
     this.topicService.unsubscribeTopic(topicId).subscribe({
       next: (response) => {
@@ -42,9 +45,8 @@ export class TopicsListComponent {
     });
   }
 
+  /** Checks if the user is subscribed to the specified topic */
   public isSubscribedTopic(topicId: string): boolean {
     return this.user.topics.map(topic => topic.id).includes(topicId);
   }
-
-
 }

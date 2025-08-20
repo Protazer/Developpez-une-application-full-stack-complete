@@ -13,5 +13,8 @@ import {DatePipe} from '@angular/common';
   styleUrl: './post.component.scss'
 })
 export class PostComponent {
-  @Input() post!: IPost
+  /**
+   * Input property to receive a post object from the parent component.
+   */
+  @Input({required: true}) post!: IPost;
 }
