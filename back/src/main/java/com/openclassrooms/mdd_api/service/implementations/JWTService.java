@@ -10,20 +10,40 @@ import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 
-
+/**
+ * Service to generate JWT tokens for users.
+ */
 @Service
 public class JWTService implements IJWTService {
 
     private final JwtEncoder jwtEncoder;
 
+    /**
+     * Constructor for JWTService.
+     *
+     * @param jwtEncoder the encoder used to create JWT tokens
+     */
     public JWTService(final JwtEncoder jwtEncoder) {
         this.jwtEncoder = jwtEncoder;
     }
 
+    /**
+     * Generate a JWT token for the given user.
+     * <p>
+     * The token contains issuer, issued time, expiration (1 day), and subject (user id).
+     *
+     * @param user the user for whom to create the token
+     * @return the JWT token as a String
+     */
     @Override
     public String generateToken(final User user) {
         Instant now = Instant.now();
-        JwtClaimsSet claims = JwtClaimsSet.builder().issuer("self").issuedAt(now).expiresAt(now.plus(1, ChronoUnit.DAYS)).subject(String.valueOf(user.getId())).build();
+        JwtClaimsSet claims = JwtClaimsSet.builder()
+                .issuer("self")
+                .issuedAt(now)
+                .expiresAt(now.plus(1, ChronoUnit.DAYS))
+                .subject(String.valueOf(user.getId()))
+                .build();
         JwtEncoderParameters jwtEncoderParameters = JwtEncoderParameters.from(claims);
         return this.jwtEncoder.encode(jwtEncoderParameters).getTokenValue();
     }

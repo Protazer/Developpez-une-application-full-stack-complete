@@ -11,28 +11,55 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Service to convert User objects to different DTOs and update User entities.
+ */
 @Service
 public class UserMapper {
 
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final TopicMapper topicMapper;
 
-
+    /**
+     * Constructor to create UserMapper with dependencies.
+     *
+     * @param bCryptPasswordEncoder encrypts user passwords
+     * @param topicMapper           converts Topic objects
+     */
     public UserMapper(final BCryptPasswordEncoder bCryptPasswordEncoder, final TopicMapper topicMapper) {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.topicMapper = topicMapper;
     }
 
+    /**
+     * Convert User entity to UserDto.
+     *
+     * @param user User entity to convert
+     * @return UserDto with user information and topics
+     */
     public UserDto toUserDto(final User user) {
         List<TopicDto> topicsList = user.getTopics().stream().map(this.topicMapper::toTopicDto).toList();
         return new UserDto(user.getId(), user.getName(), user.getEmail(), topicsList, user.getCreatedAt(), user.getUpdatedAt());
     }
 
+    /**
+     * Convert User entity to GetUserResponseDto.
+     *
+     * @param user User entity to convert
+     * @return GetUserResponseDto with user information and topics
+     */
     public GetUserResponseDto toGetUserResponseDto(final User user) {
         List<TopicDto> topicsList = user.getTopics().stream().map(this.topicMapper::toTopicDto).toList();
         return new GetUserResponseDto(user.getId(), user.getName(), user.getEmail(), topicsList, user.getCreatedAt(), user.getUpdatedAt());
     }
 
+    /**
+     * Update an existing User with new data.
+     *
+     * @param currentUser User entity to update
+     * @param user        data to update user from
+     * @return updated User entity
+     */
     public User toUpdatedUser(final User currentUser, final UserUpdateRequestDto user) {
         currentUser.setName(user.username());
         currentUser.setEmail(user.email());
@@ -40,6 +67,12 @@ public class UserMapper {
         return currentUser;
     }
 
+    /**
+     * Create a new User entity from registration data.
+     *
+     * @param user registration data
+     * @return new User entity with encrypted password
+     */
     public User UserRegisterToEntity(final UserRegisterRequestDto user) {
         User newUser = new User();
         newUser.setName(user.name());
