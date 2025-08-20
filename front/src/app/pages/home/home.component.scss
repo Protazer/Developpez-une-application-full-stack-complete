@@ -12,6 +12,10 @@
     justify-content: space-around;
     width: 30%;
 
+    &.responsive {
+      width: 50%;
+    }
+
     &__login {
       margin-bottom: 2rem;
     }

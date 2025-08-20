@@ -21,12 +21,24 @@ import {TopicsListComponent} from '../../shared/components/topics-list/topics-li
   styleUrl: './profile.component.scss'
 })
 export class ProfileComponent implements OnInit, OnDestroy {
+
+  /** Observable stream of the current user, or undefined if not logged in */
   public user$!: Observable<IUser | undefined>;
+
+  /** Subscription to user observable, used to trigger navigation if user is absent */
   private userSubscription!: Subscription;
 
+  /**
+   * Creates an instance of ProfileComponent.
+   * @param sessionService Service managing the user session
+   * @param router Angular router for navigation
+   */
   constructor(private sessionService: SessionService, private router: Router) {
   }
 
+  /**
+   * Subscribes to the user observable and redirects to login if no user is found.
+   */
   ngOnInit(): void {
     this.user$ = this.sessionService.user$;
     this.userSubscription = this.user$.subscribe(user => {
@@ -36,6 +48,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * Cleans up the subscription to prevent memory leaks.
+   */
   ngOnDestroy(): void {
     this.userSubscription.unsubscribe();
   }

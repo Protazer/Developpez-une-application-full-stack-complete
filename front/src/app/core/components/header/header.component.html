@@ -1,5 +1,5 @@
 <header class="header">
-  <img alt="" class="header__logo" src='logo_p6.png'>
+  <img alt="mdd-logo" class="header__logo" src='images/logo_p6.png'>
   <fa-icon (click)="handleNavBar()" *ngIf="isResponsiveStyle$|async " [icon]="faBars" class="header__hamburger"/>
   <div (click)="handleCloseNav()" *ngIf="isResponsiveNavBarActive && (isResponsiveStyle$|async)"
        class="header__overlay"></div>

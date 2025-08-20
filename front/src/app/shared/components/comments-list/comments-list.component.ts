@@ -13,5 +13,8 @@ import {CommentComponent} from '../comment/comment.component';
   styleUrl: './comments-list.component.scss'
 })
 export class CommentsListComponent {
-  @Input() comments!: IComment[];
+  /**
+   * Array of comments to be displayed.
+   */
+  @Input({required: true}) comments!: IComment[];
 }

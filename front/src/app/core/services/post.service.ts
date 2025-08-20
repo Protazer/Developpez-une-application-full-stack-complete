@@ -1,27 +1,52 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {ICreatePostRequest, IPost} from '../../interfaces/post.interface';
-import {Observable} from "rxjs";
+import {Observable} from 'rxjs';
 
+/**
+ * Service responsible for handling operations related to posts,
+ * including fetching all posts, fetching a single post by ID, and creating new posts.
+ */
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class PostService {
 
-    postApiPath = '/api/posts';
+  /**
+   * Base API path for post endpoints.
+   */
+  postApiPath = '/api/posts';
 
-    constructor(private http: HttpClient) {
-    }
+  /**
+   * Creates an instance of PostService.
+   * @param http Angular HttpClient to perform HTTP requests.
+   */
+  constructor(private http: HttpClient) {
+  }
 
-    public getAllPosts() {
-        return this.http.get<IPost[]>(this.postApiPath);
-    }
+  /**
+   * Retrieves all posts from the backend API.
+   * @returns An Observable emitting an array of posts.
+   */
+  public getAllPosts(): Observable<IPost[]> {
+    return this.http.get<IPost[]>(this.postApiPath);
+  }
 
-    public getPost(id: number): Observable<IPost> {
-        return this.http.get<IPost>(`${this.postApiPath}/${id}`);
-    }
+  /**
+   * Retrieves a single post by its ID.
+   * @param id The ID of the post to retrieve.
+   * @returns An Observable emitting the post data.
+   */
+  public getPost(id: number): Observable<IPost> {
+    return this.http.get<IPost>(`${this.postApiPath}/${id}`);
+  }
 
-    public createPost(post: ICreatePostRequest) {
-        return this.http.post(this.postApiPath, post);
-    }
+  /**
+   * Creates a new post with the given data.
+   * @param post The post data to create.
+   * @returns An Observable emitting the response from the API.
+   */
+  public createPost(post: ICreatePostRequest): Observable<object> {
+    return this.http.post(this.postApiPath, post);
+  }
 }
