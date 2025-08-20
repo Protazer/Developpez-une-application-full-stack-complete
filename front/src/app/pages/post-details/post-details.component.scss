@@ -20,13 +20,17 @@
   &__infos {
     margin-left: 44px;
 
+    &.responsive {
+      margin-left: 0;
+    }
+
     &__creation {
       display: flex;
-      flex-flow: row nowrap;
+      flex-flow: row wrap;
       align-items: center;
-      margin-bottom: 2rem;
 
       & p {
+        margin-bottom: 2rem;
         margin-right: 10%;
       }
     }
@@ -40,12 +44,21 @@
 
   &__separator {
     margin: 2rem 0 2rem 44px;
+
+    &.responsive {
+      margin-left: 0;
+    }
   }
 
   &__comments__title {
     font-weight: 300;
     margin-left: 44px;
     font-size: 1.2rem;
+    margin-bottom: 1rem;
+
+    &.responsive {
+      margin-left: 0;
+    }
   }
 
   &__comments__wrapper {
@@ -54,6 +67,11 @@
     align-items: center;
     margin-left: 44px;
     padding: 0 4%;
+
+    &.responsive {
+      margin-left: 0;
+      padding: 0;
+    }
 
     &__commentList, &__commentForm {
       width: 100%;

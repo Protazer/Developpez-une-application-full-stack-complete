@@ -1,0 +1,6 @@
+<article [ngClass]="{'responsive': isResponsiveStyle$ | async}" class="comment">
+  <span [ngClass]="{'responsive': isResponsiveStyle$ | async}" class="comment__user">{{ comment.user.name }}</span>
+  <p [ngClass]="{'responsive': isResponsiveStyle$ | async}" class="comment__content">
+    {{ comment.content }}
+  </p>
+</article>

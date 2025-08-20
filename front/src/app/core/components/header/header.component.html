@@ -1,6 +1,12 @@
 <header class="header">
   <img alt="" class="header__logo" src='logo_p6.png'>
-  <nav *ngIf="isLogged$ | async; else notLogged" class="header__nav">
+  <fa-icon (click)="handleNavBar()" *ngIf="isResponsiveStyle$|async " [icon]="faBars" class="header__hamburger"/>
+  <div (click)="handleCloseNav()" *ngIf="isResponsiveNavBarActive && (isResponsiveStyle$|async)"
+       class="header__overlay"></div>
+  <nav *ngIf="isLogged$ | async; else notLogged" [ngClass]="{
+  'responsive': isResponsiveStyle$ | async ,
+  'active': isResponsiveNavBarActive}"
+       class="header__nav">
     <ul class="header__nav__links">
       <li class="header__nav__links__item"><a (click)="logOut()" class="header__nav__links__item__link__logout">Se
         déconnecter</a></li>
@@ -24,8 +30,6 @@
             d="M24.4734 20.4733C21.029 20.4733 18.2368 17.6811 18.2368 14.2367C18.2368 10.7923 21.029 8 24.4734 8C27.9178 8 30.7101 10.7923 30.7101 14.2367C30.7101 17.6811 27.9178 20.4733 24.4734 20.4733Z"
             stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
         </svg>
-
-
       </a></li>
     </ul>
   </nav>

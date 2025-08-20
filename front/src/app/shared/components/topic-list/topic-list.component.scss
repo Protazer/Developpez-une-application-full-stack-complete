@@ -2,7 +2,7 @@
 
 .topic {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: column wrap;
   background-color: variables.$color-secondary;
   width: 100%;
   padding: 1rem;

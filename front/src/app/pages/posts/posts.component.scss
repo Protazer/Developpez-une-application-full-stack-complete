@@ -4,12 +4,24 @@
     flex-flow: row wrap;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 4%;
+    padding: 1rem 2%;
+
+    &.responsive {
+      flex-flow: column nowrap;
+      align-items: center;
+    }
+
+    &__create {
+      &.responsive {
+        margin-bottom: 1rem;
+      }
+    }
 
     &__sort {
       display: flex;
       flex-flow: row nowrap;
       align-items: center;
+      margin-top: 1rem;
 
       &:hover {
         cursor: pointer;
@@ -43,7 +55,7 @@
     flex-flow: row wrap;
     justify-content: space-between;
     width: 100%;
-    padding: 1rem 4%;
+    padding: 1rem 2%;
     gap: 2rem;
   }
 }

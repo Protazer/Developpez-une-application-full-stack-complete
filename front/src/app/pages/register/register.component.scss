@@ -4,6 +4,17 @@
   height: calc(100vh - 90px);
   width: 100vw;
 
+  &__form {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+
+    &__image {
+      object-fit: contain;
+      width: 250px;
+    }
+  }
+
   &__baseline {
     padding: 1rem 0 0 2rem;
 

@@ -3,6 +3,7 @@
     <fa-icon (click)="handleNavigateToHome()" [icon]="faArrowLeft" class="register__baseline__arrow"/>
   </section>
   <section class="register__form">
+    <img *ngIf="isResponsiveStyle$ | async" alt="mdd-app-logo" class="register__form__image" src="logo_p6.png"/>
     <app-register-form/>
   </section>
 </main>

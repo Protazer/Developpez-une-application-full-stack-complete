@@ -1,4 +1,10 @@
+@use 'variables';
+
 .topic {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: variables.$color-secondary;
+
   &__title {
     font-weight: bold;
     margin-bottom: 0.5rem;
