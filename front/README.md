@@ -1,6 +1,6 @@
 # MDD Application
 
-![ChâTop Logo](src/assets/images/Orion_banner.png)
+![MDD image](src/assets/images/orion_banner.png)
 
 ## Required dependencies
 
@@ -20,6 +20,10 @@
 - "zone.js": "~0.15.0"
 
 ## Install and launch the Front-End :
+
+[![forthebadge](https://forthebadge.com/images/badges/uses-html.svg)](https://forthebadge.com)
+[![forthebadge](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjUuMzMzMzM1ODc2NDY0ODQiIGhlaWdodD0iMzUiIHZpZXdCb3g9IjAgMCAxMjUuMzMzMzM1ODc2NDY0ODQgMzUiPjxyZWN0IHdpZHRoPSI2Mi42NjY2Njc5MzgyMzI0MiIgaGVpZ2h0PSIzNSIgZmlsbD0iI2Y3OWNmZiIvPjxyZWN0IHg9IjYyLjY2NjY2NzkzODIzMjQyIiB3aWR0aD0iNjIuNjY2NjY3OTM4MjMyNDIiIGhlaWdodD0iMzUiIGZpbGw9IiNmODNjZGQiLz48dGV4dCB4PSIzMS4zMzMzMzM5NjkxMTYyMSIgeT0iMjEuNSIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9IidSb2JvdG8nLCBzYW5zLXNlcmlmIiBmaWxsPSIjRkZGRkZGIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBsZXR0ZXItc3BhY2luZz0iMiI+VVNFUzwvdGV4dD48dGV4dCB4PSI5NC4wMDAwMDE5MDczNDg2MyIgeT0iMjEuNSIgZm9udC1zaXplPSIxMiIgZm9udC1mYW1pbHk9IidNb250c2VycmF0Jywgc2Fucy1zZXJpZiIgZmlsbD0iI0ZGRkZGRiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC13ZWlnaHQ9IjkwMCIgbGV0dGVyLXNwYWNpbmc9IjIiPlNDU1M8L3RleHQ+PC9zdmc+)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/made-with-javascript.svg)](https://forthebadge.com)
 
 1. Clone the repository:   
    `git clone https://github.com/Protazer/Developpez-une-application-full-stack-complete
